@@ -1,3 +1,5 @@
+package ru.aftlessons.sandbox;
+
 public class Point {
 
     double x, y;

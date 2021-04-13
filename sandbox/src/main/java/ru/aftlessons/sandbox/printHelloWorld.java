@@ -1,3 +1,5 @@
+package ru.aftlessons.sandbox;
+
 public class printHelloWorld {
     public static void main(String[] args) {
 //        System.out.println("Hello World!");
