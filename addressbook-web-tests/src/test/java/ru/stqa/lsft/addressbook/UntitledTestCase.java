@@ -13,6 +13,10 @@ public class UntitledTestCase {
   public void setUp() throws Exception {
     wd = new FirefoxDriver();
     wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    loginMethod();
+  }
+
+  private void loginMethod() {
     wd.get("http://localhost/addressbook/");
     wd.findElement(By.name("user")).click();
     wd.findElement(By.name("user")).clear();
@@ -28,8 +32,27 @@ public class UntitledTestCase {
   @Test
   public void testUntitledCase() throws Exception {
 
-    wd.findElement(By.linkText("groups")).click();
+    goToGroup();
+    initGroup();
+    fillGroupForm();
+    exit1();
+  }
+
+  private void exit1() {
+    wd.findElement(By.name("submit")).click();
+    wd.findElement(By.linkText("home")).click();
+    wd.findElement(By.linkText("Logout")).click();
+  }
+
+  private void initGroup() {
     wd.findElement(By.name("new")).click();
+  }
+
+  private void goToGroup() {
+    wd.findElement(By.linkText("groups")).click();
+  }
+
+  private void fillGroupForm() {
     wd.findElement(By.name("group_name")).click();
     wd.findElement(By.name("group_name")).clear();
     wd.findElement(By.name("group_name")).sendKeys("test1");
@@ -39,11 +62,6 @@ public class UntitledTestCase {
     wd.findElement(By.name("group_footer")).click();
     wd.findElement(By.name("group_footer")).clear();
     wd.findElement(By.name("group_footer")).sendKeys("test3");
-    wd.findElement(By.name("submit")).click();
-    wd.findElement(By.linkText("home")).click();
-    wd.findElement(By.linkText("groups")).click();
-    wd.findElement(By.linkText("home")).click();
-    wd.findElement(By.linkText("Logout")).click();
   }
 
   @AfterMethod(alwaysRun = true)
