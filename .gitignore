@@ -13,3 +13,6 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 .idea/workspace.xml
+sandbox/out/production/classes/ru/aftlessons/sandbox/Point.class
+sandbox/out/production/classes/ru/aftlessons/sandbox/printHelloWorld.class
+sandbox/out/test/classes/ru/aftlessons/sandbox/PointTest.class
