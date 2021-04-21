@@ -7,10 +7,10 @@ public class CreateTestGroup extends TestBase {
 
   @Test
   public void testUntitledCase() throws Exception {
-    goToGroup();
-    initGroup();
-    fillGroupForm(new DateTestGroup("test1", "test2", "test3"));
-    exit1();
+    app.goToGroup();
+    app.initGroup();
+    app.fillGroupForm(new DateTestGroup("test1", "test2", "test3"));
+    app.exit1();
   }
 
 }

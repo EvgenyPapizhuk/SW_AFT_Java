@@ -1,17 +1,15 @@
 package ru.stqa.lsft.addressbook;
 
-import org.testng.annotations.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.Test;
 
 public class DeletedTestGroup extends TestBase{
 
   @Test
   public void testDeletedTestGroup() throws Exception {
-    goToGroup();
-    deleteOneGroup();
-    goToGroup();
-    exit1();
+    app.goToGroup();
+    app.deleteOneGroup();
+    app.goToGroup();
+    app.exit1();
   }
 
 
