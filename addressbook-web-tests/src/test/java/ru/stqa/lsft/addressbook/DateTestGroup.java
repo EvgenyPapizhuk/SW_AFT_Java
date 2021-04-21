@@ -1,12 +1,12 @@
 package ru.stqa.lsft.addressbook;
 
-public class GroupDate {
+public class DateTestGroup {
     private final String name;
     private final String header;
     private final String footer;
 
-    public GroupDate(String name, String header, String footer) {
-        this.name = name;
+    public DateTestGroup(String name, String header, String footer) {
+        this.name = "name" + (int)(Math.random()*10);
         this.header = header;
         this.footer = footer;
     }
