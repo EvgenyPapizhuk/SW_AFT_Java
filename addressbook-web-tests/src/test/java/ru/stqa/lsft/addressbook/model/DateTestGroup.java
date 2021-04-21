@@ -1,4 +1,4 @@
-package ru.stqa.lsft.addressbook;
+package ru.stqa.lsft.addressbook.model;
 
 public class DateTestGroup {
     private final String name;

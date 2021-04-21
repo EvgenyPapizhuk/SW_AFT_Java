@@ -1,10 +1,11 @@
-package ru.stqa.lsft.addressbook;
+package ru.stqa.lsft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import ru.stqa.lsft.addressbook.model.DateTestGroup;
 
 import java.util.concurrent.TimeUnit;
 

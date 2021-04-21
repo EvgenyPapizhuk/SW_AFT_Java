@@ -1,7 +1,8 @@
-package ru.stqa.lsft.addressbook;
+package ru.stqa.lsft.addressbook.tests;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import ru.stqa.lsft.addressbook.appmanager.ApplicationManager;
 
 public class TestBase {
 

@@ -1,6 +1,7 @@
-package ru.stqa.lsft.addressbook;
+package ru.stqa.lsft.addressbook.tests;
 
 import org.testng.annotations.Test;
+import ru.stqa.lsft.addressbook.model.DateTestGroup;
 
 public class CreateTestGroup extends TestBase {
 
