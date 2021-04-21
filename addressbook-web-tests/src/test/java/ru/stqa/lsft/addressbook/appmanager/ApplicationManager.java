@@ -5,21 +5,22 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import ru.stqa.lsft.addressbook.model.DateTestGroup;
 
 import java.util.concurrent.TimeUnit;
 
-public class ApplicationManager {
-    public WebDriver wd;
+public class ApplicationManager extends NavigationHalper{
+
+    private  GroupHelper groupHelper;
 
     public void init() {
         wd = new FirefoxDriver();
         wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        wd.get("http://localhost/addressbook/");
+        groupHelper = new GroupHelper(wd);
         loginMethod("admin", "secret");
     }
 
     public void loginMethod(String userlog, String userpass) {
-      wd.get("http://localhost/addressbook/");
       wd.findElement(By.name("user")).click();
       wd.findElement(By.name("user")).clear();
       wd.findElement(By.name("user")).sendKeys(userlog);
@@ -33,26 +34,6 @@ public class ApplicationManager {
 
     public void exit1() {
       wd.findElement(By.linkText("Logout")).click();
-    }
-
-    public void initGroup() {
-      wd.findElement(By.name("new")).click();
-    }
-
-    public void goToGroup() {
-      wd.findElement(By.linkText("groups")).click();
-    }
-
-    public void fillGroupForm(DateTestGroup groupDate) {
-      wd.findElement(By.name("group_name")).click();
-      wd.findElement(By.name("group_name")).clear();
-      wd.findElement(By.name("group_name")).sendKeys(groupDate.getName());
-      wd.findElement(By.name("group_header")).click();
-      wd.findElement(By.name("group_header")).clear();
-      wd.findElement(By.name("group_header")).sendKeys(groupDate.getHeader());
-      wd.findElement(By.name("group_footer")).click();
-      wd.findElement(By.name("group_footer")).clear();
-      wd.findElement(By.name("group_footer")).sendKeys(groupDate.getFooter());
     }
 
     public void stop() {
@@ -77,8 +58,7 @@ public class ApplicationManager {
       }
     }
 
-    public void deleteOneGroup() {
-      wd.findElement(By.name("selected[]")).click();
-      wd.findElement(By.name("delete")).click();
+    public GroupHelper getGroupHelper() {
+        return groupHelper;
     }
 }
