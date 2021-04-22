@@ -1,9 +1,10 @@
-package ru.stqa.lsft.addressbook.tests;
+package ru.stqa.lsft.addressbook.tests.testOfContact;
 
 import org.testng.annotations.Test;
 import ru.stqa.lsft.addressbook.model.DateTestContact;
+import ru.stqa.lsft.addressbook.tests.TestBase;
 
-public class CreateTestContact extends TestBase{
+public class CreateTestContact extends TestBase {
 
 
     @Test
