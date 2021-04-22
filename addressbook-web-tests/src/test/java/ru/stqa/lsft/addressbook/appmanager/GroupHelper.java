@@ -1,7 +1,6 @@
 package ru.stqa.lsft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.lsft.addressbook.model.DateTestGroup;
 
@@ -17,9 +16,9 @@ public class GroupHelper extends HelperBase{
 
 
     public void fillGroupForm(DateTestGroup groupDate) {
-        type(By.name("group_name"), groupDate.getName());
-        type(By.name("group_header"), groupDate.getHeader());
-        type(By.name("group_footer"), groupDate.getFooter());
+        type(By.name("firstname"), groupDate.getFirstName());
+        type(By.name("middlename"), groupDate.getMiddlename());
+        type(By.name("lastname"), groupDate.getLastName());
     }
 
     public void clickInSubmit() {
