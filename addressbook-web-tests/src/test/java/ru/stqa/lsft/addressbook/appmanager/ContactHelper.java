@@ -23,4 +23,9 @@ public class ContactHelper extends HelperBase{
     public void initContactModificater() {
         click(By.xpath("//img[@alt='Edit']"));
     }
+
+    public void selectContact() {
+        click(By.name("selected[]"));
+    }
+
 }
