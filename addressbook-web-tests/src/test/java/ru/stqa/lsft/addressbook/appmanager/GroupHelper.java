@@ -8,7 +8,6 @@ import ru.stqa.lsft.addressbook.model.DateTestGroup;
 public class GroupHelper extends HelperBase{
 
     public GroupHelper(FirefoxDriver wd) {
-
         super(wd);
     }
 
@@ -21,11 +20,26 @@ public class GroupHelper extends HelperBase{
         type(By.name("group_name"), groupDate.getName());
         type(By.name("group_header"), groupDate.getHeader());
         type(By.name("group_footer"), groupDate.getFooter());
+    }
+
+    public void clickInSubmit() {
         click(By.name("submit"));
     }
 
+
     public void deleteOneGroup() {
-        click(By.name("selected[]"));
         click(By.name("delete"));
+    }
+
+    public void selectGroup() {
+        click(By.name("selected[]"));
+    }
+
+    public void initGroupModificater() {
+        click(By.name("edit"));
+    }
+
+    public void submitGroupModification() {
+        click(By.name("update"));
     }
 }

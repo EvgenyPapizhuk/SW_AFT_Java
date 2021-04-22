@@ -7,6 +7,7 @@ public class DeletedTestGroup extends TestBase{
   @Test
   public void testDeletedTestGroup() throws Exception {
     app.getNavigationHalper().goToGroup();
+    app.getGroupHelper().selectGroup();
     app.getGroupHelper().deleteOneGroup();
     app.getNavigationHalper().goToGroup();
     app.exit1();
