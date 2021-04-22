@@ -28,4 +28,8 @@ public class ContactHelper extends HelperBase{
         click(By.name("selected[]"));
     }
 
+    public void initDeletedContact() {
+        click(By.xpath("//input[@value='Delete']"));
+    }
+
 }

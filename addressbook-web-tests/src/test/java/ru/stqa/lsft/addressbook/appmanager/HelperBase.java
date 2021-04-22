@@ -38,7 +38,4 @@ public class HelperBase {
         click(By.name("update"));
     }
 
-    public void initDeleted() {
-        click(By.xpath("//input[@value='Delete']"));
-    }
 }

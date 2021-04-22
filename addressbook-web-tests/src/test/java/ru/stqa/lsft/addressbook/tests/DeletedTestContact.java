@@ -7,7 +7,7 @@ public class DeletedTestContact extends TestBase{
     @Test
     public void testDeletedTestGroup() throws Exception {
         app.getContactHelper().selectContact();
-        app.getContactHelper().initDeleted();
+        app.getContactHelper().initDeletedContact();
         app.wd.switchTo().alert().accept();
         app.exit1();
     }
