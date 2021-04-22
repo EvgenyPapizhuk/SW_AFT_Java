@@ -9,7 +9,7 @@ public class DateTestContact {
     public DateTestContact(String name, String header, String footer) {
         this.name = "name_person" + (int) (Math.random() * 10) + (int) (Math.random() * 10);
         this.header = header + (int) (Math.random() * 10) + (int) (Math.random() * 10);
-        this.footer = footer;
+        this.footer = footer + (int) (Math.random() * 10) + (int) (Math.random() * 10);
     }
 
     public String getFirstName() {

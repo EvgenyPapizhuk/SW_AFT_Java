@@ -19,4 +19,8 @@ public class ContactHelper extends HelperBase{
         type(By.name("middlename"), dateContact.getMiddleName());
         type(By.name("lastname"), dateContact.getLastName());
     }
+
+    public void initContactModificater() {
+        click(By.xpath("//img[@alt='Edit']"));
+    }
 }
