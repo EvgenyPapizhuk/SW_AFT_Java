@@ -30,4 +30,7 @@ public class HelperBase {
         }
     }
 
+    public void clickInSubmit() {
+        click(By.name("submit"));
+    }
 }

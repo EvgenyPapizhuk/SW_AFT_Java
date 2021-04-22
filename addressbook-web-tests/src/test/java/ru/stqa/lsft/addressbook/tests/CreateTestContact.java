@@ -10,7 +10,10 @@ public class CreateTestContact extends TestBase{
     public void testCreateContact() throws Exception {
         app.getContactHelper().initContact();
         app.getContactHelper().fillContactForm(new DateTestContact("test1", "test2", "test3"));
-        app.getGroupHelper().clickInSubmit();
+        Thread.sleep(2000);
+        app.getContactHelper().clickInSubmit();
+        Thread.sleep(1000);
+
         app.exit1();
     }
 

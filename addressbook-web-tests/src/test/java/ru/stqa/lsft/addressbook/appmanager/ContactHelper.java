@@ -15,8 +15,8 @@ public class ContactHelper extends HelperBase{
     }
 
     public void fillContactForm(DateTestContact dateContact) {
-        type(By.name("group_name"), dateContact.getName());
-        type(By.name("group_header"), dateContact.getHeader());
-        type(By.name("group_footer"), dateContact.getFooter());
+        type(By.name("firstname"), dateContact.getFirstName());
+        type(By.name("middlename"), dateContact.getMiddleName());
+        type(By.name("lastname"), dateContact.getLastName());
     }
 }

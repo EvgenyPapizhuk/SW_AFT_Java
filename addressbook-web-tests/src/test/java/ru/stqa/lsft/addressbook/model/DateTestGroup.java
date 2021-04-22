@@ -11,15 +11,15 @@ public class DateTestGroup {
         this.footer = footer;
     }
 
-    public String getFirstName() {
+    public String getName() {
         return name;
     }
 
-    public String getMiddlename() {
+    public String getHeader() {
         return header;
     }
 
-    public String getLastName() {
+    public String getFooter() {
         return footer;
     }
 }
