@@ -7,7 +7,7 @@ public class DateTestContact {
     private final String lastName;
     private String group;
 
-    public DateTestContact(String name, String middleName, String lastName, String group, boolean create) {
+    public DateTestContact(String name, String middleName, String lastName, String group) {
         this.group = group;
         this.firstName = "name_person" + (int) (Math.random() * 10) + (int) (Math.random() * 10);
         this.middleName = middleName + (int) (Math.random() * 10) + (int) (Math.random() * 10);
