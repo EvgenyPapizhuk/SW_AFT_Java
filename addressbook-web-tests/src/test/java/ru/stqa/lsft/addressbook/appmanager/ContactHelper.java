@@ -1,8 +1,10 @@
 package ru.stqa.lsft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
 import ru.stqa.lsft.addressbook.model.DateTestContact;
 
 
@@ -19,6 +21,9 @@ public class ContactHelper extends HelperBase{
         type(By.name("firstname"), dateContact.getFirstName());
         type(By.name("middlename"), dateContact.getMiddleName());
         type(By.name("lastname"), dateContact.getLastName());
+        if (isElementPresent(By.name("new_group"))) {
+            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(dateContact.getGroup());
+        }
     }
 
     public void initContactModificater() {
