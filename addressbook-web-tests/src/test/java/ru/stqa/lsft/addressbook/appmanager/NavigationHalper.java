@@ -23,5 +23,6 @@ public class NavigationHalper extends HelperBase{
         if (isElementPresent(By.id("maintable"))  ) {
             return;
         }
-        click(By.linkText("home")); }
+        click(By.linkText("home"));
+    }
 }

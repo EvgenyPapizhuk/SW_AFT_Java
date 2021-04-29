@@ -9,7 +9,7 @@ import org.testng.Assert;
 import ru.stqa.lsft.addressbook.model.DateTestContact;
 
 
-public class ContactHelper extends HelperBase{
+public class ContactHelper extends HelperBase {
     public ContactHelper(WebDriver wd) {
         super(wd);
     }
@@ -39,6 +39,24 @@ public class ContactHelper extends HelperBase{
 
     public void initDeletedContact() {
         click(By.xpath("//input[@value='Delete']"));
+    }
+
+    public boolean isThereAContact() {
+        return isElementPresent(By.name("selected[]"));
+    }
+
+    public void returnToContacts() {
+        if (isElementPresent(By.id("maintable"))) {
+            return;
+        }
+        click(By.linkText("home"));
+    }
+
+    public void createContact(DateTestContact dateTestContact, boolean create) {
+        initContact();
+        fillContactForm(dateTestContact, create);
+        clickInSubmit();
+        returnToContacts();
     }
 
 }
