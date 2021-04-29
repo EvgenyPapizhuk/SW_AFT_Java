@@ -35,4 +35,20 @@ public class GroupHelper extends HelperBase{
         click(By.name("delete"));
     }
 
+    public boolean isThereAGroup() {
+        return isElementPresent(By.className("group"));
+    }
+
+
+    public void returnToGroup() {
+        click(By.linkText("groups"));
+    }
+
+
+    public void createGroup(DateTestGroup groupDate) {
+        initGroup();
+        fillGroupForm(groupDate);
+        clickInSubmit();
+        returnToGroup();
+    }
 }
