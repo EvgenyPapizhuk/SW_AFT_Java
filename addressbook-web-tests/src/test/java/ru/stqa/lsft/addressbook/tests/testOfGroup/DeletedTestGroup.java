@@ -14,7 +14,7 @@ public class DeletedTestGroup extends TestBase {
     if (!app.getGroupHelper().isThereAGroup()) {
       app.getGroupHelper().createGroup(new DateTestGroup("test1", null, null));
     }
-    app.getGroupHelper().selectGroup();
+    app.getGroupHelper().selectGroup(1);
     app.getGroupHelper().initDeletedGroup();
     app.getNavigationHalper().goToGroup();
     int after = app.getGroupHelper().getGroupCount();

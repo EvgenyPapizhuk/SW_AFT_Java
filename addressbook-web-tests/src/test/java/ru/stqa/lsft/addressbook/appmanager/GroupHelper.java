@@ -23,8 +23,8 @@ public class GroupHelper extends HelperBase{
     }
 
 
-    public void selectGroup() {
-        click(By.name("selected[]"));
+    public void selectGroup(int i) {
+        wd.findElements(By.name("selected[]")).get(i-1).click();
     }
 
     public void initGroupModificater() {
