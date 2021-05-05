@@ -2,8 +2,12 @@ package ru.stqa.lsft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.lsft.addressbook.model.DateTestGroup;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GroupHelper extends HelperBase{
 
@@ -54,5 +58,16 @@ public class GroupHelper extends HelperBase{
 
     public int getGroupCount() {
         return wd.findElements(By.name("selected[]")).size();
+    }
+
+    public List<DateTestGroup> getGroupList() {
+        List<DateTestGroup> groups = new ArrayList<>();
+        List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+        for (WebElement we : elements) {
+            String name = we.getText();
+            DateTestGroup date = new DateTestGroup(name, null, null);
+            groups.add(date);
+        }
+        return groups;
     }
 }
