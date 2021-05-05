@@ -3,21 +3,21 @@ package ru.stqa.lsft.addressbook.model;
 import java.util.Objects;
 
 public class DateTestGroup {
-    private final String id;
+    private int id;
     private final String name;
     private final String header;
     private final String footer;
 
 
     public DateTestGroup(String name, String header, String footer) {
-        this.id = null;
+        this.id = 0;
         this.name = name;
 //        this.name = "test1";
         this.header = header;
         this.footer = footer;
     }
 
-    public DateTestGroup(String id, String name, String header, String footer) {
+    public DateTestGroup(int id, String name, String header, String footer) {
         this.id = id;
         this.name = name;
 //        this.name = "test1";
@@ -58,7 +58,11 @@ public class DateTestGroup {
                 '}';
     }
 
-    public String getId() {
+    public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
