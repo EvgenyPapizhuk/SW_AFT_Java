@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import ru.stqa.lsft.addressbook.model.DateTestGroup;
 import ru.stqa.lsft.addressbook.tests.TestBase;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class GroupModificationTest extends TestBase {
@@ -16,13 +17,19 @@ public class GroupModificationTest extends TestBase {
             app.getGroupHelper().createGroup(new DateTestGroup("test1", null, null));
         }
         List<DateTestGroup> before = app.getGroupHelper().getGroupList();
-        app.getGroupHelper().selectGroup(1);
+        app.getGroupHelper().selectGroup(before.size());
         app.getGroupHelper().initGroupModificater();
-        app.getGroupHelper().fillGroupForm(new DateTestGroup("test44", "test22", "test3"));
+        DateTestGroup group1 = new DateTestGroup(before.get(before.size() - 1).getId(), "test44", "test22", "test3");
+        app.getGroupHelper().fillGroupForm(group1);
         app.getGroupHelper().clickUpdate();
         app.getNavigationHalper().goToGroup();
         List<DateTestGroup> after = app.getGroupHelper().getGroupList();
         Assert.assertEquals(before.size(), after.size());
+
+        before.remove(before.size() - 1);
+        before.add(group1);
+
+        Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after) );
         app.exit1();
     }
 

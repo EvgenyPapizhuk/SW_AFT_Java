@@ -23,7 +23,7 @@ public class DeletedTestGroup extends TestBase {
     Assert.assertEquals(before.size() - 1, after.size());
 
     before.remove(before.size()-1);
-      Assert.assertEquals(before, after);
+    Assert.assertEquals(before, after);
 
 
     app.exit1();
