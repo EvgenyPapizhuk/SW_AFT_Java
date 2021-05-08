@@ -10,7 +10,7 @@ public class DateTestGroup {
 
 
     public DateTestGroup(String name, String header, String footer) {
-        this.id = 0;
+        this.id = Integer.MAX_VALUE;
         this.name = name;
 //        this.name = "test1";
         this.header = header;
@@ -42,12 +42,12 @@ public class DateTestGroup {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DateTestGroup group = (DateTestGroup) o;
-        return Objects.equals(id, group.id) && Objects.equals(name, group.name);
+        return Objects.equals(name, group.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(name);
     }
 
     @Override

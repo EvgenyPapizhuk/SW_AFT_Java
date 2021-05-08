@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import ru.stqa.lsft.addressbook.model.DateTestGroup;
 import ru.stqa.lsft.addressbook.tests.TestBase;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
@@ -29,7 +30,12 @@ public class GroupModificationTest extends TestBase {
         before.remove(before.size() - 1);
         before.add(group1);
 
+        Comparator<? super DateTestGroup> byId = (o1, o2) -> Integer.compare(o1.getId(), o2.getId());
+        before.sort(byId);
+        after.sort(byId);
+
         Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after) );
+        Assert.assertEquals(before, after);
         app.exit1();
     }
 

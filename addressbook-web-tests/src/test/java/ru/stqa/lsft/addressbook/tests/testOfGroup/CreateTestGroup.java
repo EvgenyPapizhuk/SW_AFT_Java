@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import ru.stqa.lsft.addressbook.model.DateTestGroup;
 import ru.stqa.lsft.addressbook.tests.TestBase;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
@@ -27,13 +28,17 @@ public class CreateTestGroup extends TestBase {
 //      }
 //    }
 
-    int max = after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId();
-
-    group1.setId(max);
+//    group1.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
 
     before.add(group1);
 
+    Comparator<? super DateTestGroup> byId = (o1, o2) -> Integer.compare(o1.getId(), o2.getId());
+    before.sort(byId);
+    after.sort(byId);
+
+
     Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+    Assert.assertEquals(before, after);
 
     app.exit1();
   }
