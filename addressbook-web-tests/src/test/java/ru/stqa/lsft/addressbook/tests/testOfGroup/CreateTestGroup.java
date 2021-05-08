@@ -15,17 +15,19 @@ public class CreateTestGroup extends TestBase {
   public void testUntitledCase() throws Exception {
     app.getNavigationHalper().goToGroup();
     List<DateTestGroup> before = app.getGroupHelper().getGroupList();
-    DateTestGroup group1 = new DateTestGroup("test1", null, null);
+    DateTestGroup group1 = new DateTestGroup("test2", null, null);
     app.getGroupHelper().createGroup(group1);
     List<DateTestGroup> after = app.getGroupHelper().getGroupList();
     Assert.assertEquals(before.size() + 1, after.size());
 
-    int max = 0;
-    for (DateTestGroup g : after) {
-      if (max < g.getId()) {
-        max = g.getId();
-      }
-    }
+//    int max = 0;
+//    for (DateTestGroup g : after) {
+//      if (max < g.getId()) {
+//        max = g.getId();
+//      }
+//    }
+
+    int max = after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId();
 
     group1.setId(max);
 
