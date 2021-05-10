@@ -27,7 +27,8 @@ public class ContactModificationTest extends TestBase {
 
         before.remove(before.size() - 1);
         before.add(dataContact);
-        Comparator<? super DateTestContact> byHC = (o1, o2) -> Integer.compare(o1.hashCode(), o2.hashCode());
+//        Comparator<? super DateTestContact> byHC = (o1, o2) -> Integer.compare(o1.hashCode(), o2.hashCode());
+        Comparator<? super DateTestContact> byHC = (o1, o2) -> o1.toString().compareTo(o2.toString());
         before.sort(byHC);
         after.sort(byHC);
         Assert.assertEquals(before, after);
