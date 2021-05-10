@@ -34,8 +34,9 @@ public class ContactHelper extends HelperBase {
         }
     }
 
-    public void initContactModificater() {
-        click(By.xpath("//img[@alt='Edit']"));
+    public void initContactModificater(int num) {
+//        click(By.xpath("//img[@alt='Edit']"));
+        click(By.xpath("(//img[@alt='Edit'])[" + num + "]"));
     }
 
     public void selectContact() {

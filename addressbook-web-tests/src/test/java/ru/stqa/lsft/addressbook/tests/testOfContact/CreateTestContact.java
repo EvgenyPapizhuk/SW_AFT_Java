@@ -22,9 +22,9 @@ public class CreateTestContact extends TestBase {
         List<DateTestContact> after = app.getContactHelper().getContactList();
         before.add(dataContact);
 
-        Comparator<? super DateTestContact> byId = (o1, o2) -> Integer.compare(o1.hashCode(), o2.hashCode());
-        before.sort(byId);
-        after.sort(byId);
+        Comparator<? super DateTestContact> byHC = (o1, o2) -> Integer.compare(o1.hashCode(), o2.hashCode());
+        before.sort(byHC);
+        after.sort(byHC);
         Assert.assertEquals(before, after);
         app.exit1();
     }
