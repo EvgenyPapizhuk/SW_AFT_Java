@@ -1,5 +1,7 @@
 package ru.stqa.lsft.addressbook.model;
 
+import java.util.Objects;
+
 public class DateTestContact {
 
     private final String firstName;
@@ -7,11 +9,32 @@ public class DateTestContact {
     private final String lastName;
     private String group;
 
-    public DateTestContact(String name, String middleName, String lastName, String group) {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DateTestContact that = (DateTestContact) o;
+        return Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName);
+    }
+
+    @Override
+    public String toString() {
+        return "DateTestContact{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName);
+    }
+
+    public DateTestContact(String firstName, String middleName, String lastName, String group) {
         this.group = group;
-        this.firstName = "name_person" + (int) (Math.random() * 10) + (int) (Math.random() * 10);
-        this.middleName = middleName + (int) (Math.random() * 10) + (int) (Math.random() * 10);
-        this.lastName = lastName + (int) (Math.random() * 10) + (int) (Math.random() * 10);
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
     }
 
     public String getFirstName() {

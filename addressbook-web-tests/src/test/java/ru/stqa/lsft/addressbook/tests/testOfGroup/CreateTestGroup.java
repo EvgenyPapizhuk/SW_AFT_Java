@@ -15,10 +15,14 @@ public class CreateTestGroup extends TestBase {
   @Test
   public void testUntitledCase() throws Exception {
     app.getNavigationHalper().goToGroup();
+
     List<DateTestGroup> before = app.getGroupHelper().getGroupList();
+
     DateTestGroup group1 = new DateTestGroup("test2", null, null);
     app.getGroupHelper().createGroup(group1);
+
     List<DateTestGroup> after = app.getGroupHelper().getGroupList();
+
     Assert.assertEquals(before.size() + 1, after.size());
 
 //    int max = 0;
