@@ -8,21 +8,7 @@ public class DateTestGroup {
     private String header;
     private String footer;
 
-//    public DateTestGroup(String name, String header, String footer) {
-//        this.id = Integer.MAX_VALUE;
-//        this.name = name;
-////        this.name = "test1";
-//        this.header = header;
-//        this.footer = footer;
-//    }
-//
-//    public DateTestGroup(int id, String name, String header, String footer) {
-//        this.id = id;
-//        this.name = name;
-////        this.name = "test1";
-//        this.header = header;
-//        this.footer = footer;
-//    }
+
 
     public String getName() {
         return name;
@@ -41,12 +27,12 @@ public class DateTestGroup {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DateTestGroup group = (DateTestGroup) o;
-        return Objects.equals(name, group.name);
+        return id == group.id && Objects.equals(name, group.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(id, name);
     }
 
     @Override

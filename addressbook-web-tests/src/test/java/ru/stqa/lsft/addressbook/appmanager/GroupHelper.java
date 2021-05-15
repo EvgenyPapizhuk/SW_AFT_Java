@@ -7,7 +7,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.lsft.addressbook.model.DateTestGroup;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class GroupHelper extends HelperBase{
 
@@ -29,6 +31,10 @@ public class GroupHelper extends HelperBase{
 
     public void selectGroup(int i) {
         wd.findElements(By.name("selected[]")).get(i).click();
+    }
+
+    private void selectGroupById(int id) {
+        wd.findElement(By.cssSelector("input[value = '" + id + "']")).click();
     }
 
     public void initGroupModificater() {
@@ -56,8 +62,8 @@ public class GroupHelper extends HelperBase{
         returnToGroup();
     }
 
-    public void modify(int index, DateTestGroup group1) {
-        selectGroup(index);
+    public void modify(DateTestGroup group1) {
+        selectGroupById(group1.getId());
         initGroupModificater();
         fillGroupForm(group1);
         clickUpdate();
@@ -90,10 +96,28 @@ public class GroupHelper extends HelperBase{
         return groups;
     }
 
+    public Set<DateTestGroup> all() {
+        Set<DateTestGroup> groups = new HashSet<>();
+        List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+        for (WebElement we : elements) {
+            String name = we.getText();
+            int id = Integer.parseInt(we.findElement(By.tagName("input")).getAttribute("value"));
+            groups.add(new DateTestGroup().withtId(id).withName(name));
+        }
+        return groups;
+    }
+
     public void delete(int index) {
         selectGroup(index);
         initDeletedGroup();
         goToGroup();
+    }
+
+    public void delete(DateTestGroup group) {
+        selectGroupById(group.getId());
+        initDeletedGroup();
+        goToGroup();
+
     }
 
 
