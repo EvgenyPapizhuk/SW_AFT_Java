@@ -16,7 +16,7 @@ public class CreateTestGroup extends TestBase {
   public void testUntitledCase() throws Exception {
     app.goTo().groupPage();
     List<DateTestGroup> before = app.group().list();
-    DateTestGroup group1 = new DateTestGroup("test2", null, null);
+    DateTestGroup group1 = new DateTestGroup().withName("test2");
     app.group().create(group1);
     List<DateTestGroup> after = app.group().list();
     Assert.assertEquals(before.size() + 1, after.size());

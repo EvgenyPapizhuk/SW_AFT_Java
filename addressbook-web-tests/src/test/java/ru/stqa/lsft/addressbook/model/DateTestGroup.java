@@ -3,27 +3,26 @@ package ru.stqa.lsft.addressbook.model;
 import java.util.Objects;
 
 public class DateTestGroup {
-    private int id;
-    private final String name;
-    private final String header;
-    private final String footer;
+    private int id = Integer.MAX_VALUE;
+    private String name;
+    private String header;
+    private String footer;
 
-
-    public DateTestGroup(String name, String header, String footer) {
-        this.id = Integer.MAX_VALUE;
-        this.name = name;
-//        this.name = "test1";
-        this.header = header;
-        this.footer = footer;
-    }
-
-    public DateTestGroup(int id, String name, String header, String footer) {
-        this.id = id;
-        this.name = name;
-//        this.name = "test1";
-        this.header = header;
-        this.footer = footer;
-    }
+//    public DateTestGroup(String name, String header, String footer) {
+//        this.id = Integer.MAX_VALUE;
+//        this.name = name;
+////        this.name = "test1";
+//        this.header = header;
+//        this.footer = footer;
+//    }
+//
+//    public DateTestGroup(int id, String name, String header, String footer) {
+//        this.id = id;
+//        this.name = name;
+////        this.name = "test1";
+//        this.header = header;
+//        this.footer = footer;
+//    }
 
     public String getName() {
         return name;
@@ -62,7 +61,23 @@ public class DateTestGroup {
         return id;
     }
 
-    public void setId(int id) {
+    public DateTestGroup withtId(int id) {
         this.id = id;
+        return this;
+    }
+
+    public DateTestGroup withName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public DateTestGroup withHeader(String header) {
+        this.header = header;
+        return this;
+    }
+
+    public DateTestGroup withFooter(String footer) {
+        this.footer = footer;
+        return this;
     }
 }
