@@ -28,7 +28,7 @@ public class GroupHelper extends HelperBase{
 
 
     public void selectGroup(int i) {
-        wd.findElements(By.name("selected[]")).get(i-1).click();
+        wd.findElements(By.name("selected[]")).get(i).click();
     }
 
     public void initGroupModificater() {
@@ -56,6 +56,25 @@ public class GroupHelper extends HelperBase{
         returnToGroup();
     }
 
+    public void modificationGroup(int index, DateTestGroup group1) {
+        selectGroup(index);
+        initGroupModificater();
+        fillGroupForm(group1);
+        clickUpdate();
+        goToGroup();
+    }
+
+    public void goToGroup() {
+        if (isElementPresent(By.tagName("h1"))
+                && wd.findElement(By.tagName("h1")).getText().equals("Groups")
+                &&  isElementPresent(By.name("new"))  ) {
+            return;
+        }
+        click(By.linkText("groups"));
+    }
+
+
+
     public int getGroupCount() {
         return wd.findElements(By.name("selected[]")).size();
     }
@@ -71,4 +90,6 @@ public class GroupHelper extends HelperBase{
         }
         return groups;
     }
+
+
 }
