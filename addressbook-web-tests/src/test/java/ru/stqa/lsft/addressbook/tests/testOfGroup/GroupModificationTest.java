@@ -36,7 +36,6 @@ public class GroupModificationTest extends TestBase {
 
         Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after) );
         Assert.assertEquals(before, after);
-        app.exit1();
     }
 
 }

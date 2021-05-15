@@ -32,8 +32,5 @@ public class DeletedTestContact extends TestBase {
         Assert.assertEquals(before.size(), after.size());
         System.out.println("Проверка количества прошла");
         Assert.assertEquals(before, after);
-
-
-        app.exit1();
     }
 }

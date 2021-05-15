@@ -26,7 +26,6 @@ public class CreateTestContact extends TestBase {
         before.sort(byHC);
         after.sort(byHC);
         Assert.assertEquals(before, after);
-        app.exit1();
     }
 
 }
