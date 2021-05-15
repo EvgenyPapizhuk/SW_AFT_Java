@@ -60,11 +60,11 @@ public class ApplicationManager {
     }
 
 
-    public GroupHelper getGroupHelper() {
+    public GroupHelper group() {
         return groupHelper;
     }
 
-    public NavigationHalper getNavigationHalper() {
+    public NavigationHalper goTo() {
         return navigationHalper;
     }
 

@@ -14,11 +14,11 @@ public class CreateTestGroup extends TestBase {
 
   @Test
   public void testUntitledCase() throws Exception {
-    app.getNavigationHalper().goToGroup();
-    List<DateTestGroup> before = app.getGroupHelper().getGroupList();
+    app.goTo().groupPage();
+    List<DateTestGroup> before = app.group().list();
     DateTestGroup group1 = new DateTestGroup("test2", null, null);
-    app.getGroupHelper().createGroup(group1);
-    List<DateTestGroup> after = app.getGroupHelper().getGroupList();
+    app.group().create(group1);
+    List<DateTestGroup> after = app.group().list();
     Assert.assertEquals(before.size() + 1, after.size());
     before.add(group1);
     Comparator<? super DateTestGroup> byId = (o1, o2) -> Integer.compare(o1.getId(), o2.getId());

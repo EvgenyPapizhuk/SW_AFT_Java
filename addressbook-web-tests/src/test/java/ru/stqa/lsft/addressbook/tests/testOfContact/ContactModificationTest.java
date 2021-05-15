@@ -12,7 +12,7 @@ public class ContactModificationTest extends TestBase {
 
     @Test
     public void testContactModification(){
-        app.getNavigationHalper().goToHome();
+        app.goTo().goToHome();
         if (!app.getContactHelper().isThereAContact()) {
             app.getContactHelper().createContact(new DateTestContact("test1", "test2", "test1", "test1"), true);
         }
@@ -22,7 +22,7 @@ public class ContactModificationTest extends TestBase {
 
         app.getContactHelper().fillContactForm(dataContact, false);
         app.getContactHelper().clickUpdate();
-        app.getNavigationHalper().goToHome();
+        app.goTo().goToHome();
         List<DateTestContact> after = app.getContactHelper().getContactList();
 
         before.remove(before.size() - 1);

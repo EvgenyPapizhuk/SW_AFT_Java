@@ -49,14 +49,14 @@ public class GroupHelper extends HelperBase{
     }
 
 
-    public void createGroup(DateTestGroup groupDate) {
+    public void create(DateTestGroup groupDate) {
         initGroup();
         fillGroupForm(groupDate);
         clickInSubmit();
         returnToGroup();
     }
 
-    public void modificationGroup(int index, DateTestGroup group1) {
+    public void modify(int index, DateTestGroup group1) {
         selectGroup(index);
         initGroupModificater();
         fillGroupForm(group1);
@@ -79,7 +79,7 @@ public class GroupHelper extends HelperBase{
         return wd.findElements(By.name("selected[]")).size();
     }
 
-    public List<DateTestGroup> getGroupList() {
+    public List<DateTestGroup> list() {
         List<DateTestGroup> groups = new ArrayList<>();
         List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
         for (WebElement we : elements) {
@@ -90,6 +90,13 @@ public class GroupHelper extends HelperBase{
         }
         return groups;
     }
+
+    public void delete(int index) {
+        selectGroup(index);
+        initDeletedGroup();
+        goToGroup();
+    }
+
 
 
 }

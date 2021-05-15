@@ -3,7 +3,6 @@ package ru.stqa.lsft.addressbook.tests.testOfContact;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.lsft.addressbook.model.DateTestContact;
-import ru.stqa.lsft.addressbook.model.DateTestGroup;
 import ru.stqa.lsft.addressbook.tests.TestBase;
 
 import java.util.List;
@@ -22,7 +21,7 @@ public class DeletedTestContact extends TestBase {
         app.getContactHelper().selectContact();
         app.getContactHelper().initDeletedContact();
         app.wd.switchTo().alert().accept();
-        app.getNavigationHalper().goToHome();
+        app.goTo().goToHome();
         Thread.sleep(2000);
         List<DateTestContact> after = app.getContactHelper().getContactList();
 
