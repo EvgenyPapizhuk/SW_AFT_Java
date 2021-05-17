@@ -1,13 +1,14 @@
 package ru.stqa.lsft.addressbook.tests.testOfGroup;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.lsft.addressbook.model.DateTestGroup;
+import ru.stqa.lsft.addressbook.model.Groups;
 import ru.stqa.lsft.addressbook.tests.TestBase;
 
-import java.util.List;
-import java.util.Set;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 public class DeletedTestGroup extends TestBase {
 
@@ -22,14 +23,13 @@ public class DeletedTestGroup extends TestBase {
 
   @Test
   public void testDeletedTestGroup() throws Exception {
-    Set<DateTestGroup> before = app.group().all();
+    Groups before = app.group().all();
     DateTestGroup deletedGroup = before.iterator().next();
     app.group().delete(deletedGroup);
-    Set<DateTestGroup> after = app.group().all();
-    Assert.assertEquals(before.size() - 1, after.size());
+    Groups after = app.group().all();
+    assertEquals(before.size() - 1, after.size());
+    assertThat(after, equalTo(before.withhout(deletedGroup)));
 
-    before.remove(deletedGroup);
-    Assert.assertEquals(before, after);
   }
 
 
