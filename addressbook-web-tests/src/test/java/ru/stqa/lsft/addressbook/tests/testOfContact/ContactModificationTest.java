@@ -16,14 +16,14 @@ public class ContactModificationTest extends TestBase {
         if (!app.getContactHelper().isThereAContact()) {
             app.getContactHelper().createContact(new DateTestContact("test1", "test2", "test1", "test1"), true);
         }
-        List<DateTestContact> before = app.getContactHelper().getContactList();
+        List<DateTestContact> before = app.getContactHelper().all();
         app.getContactHelper().initContactModificater(before.size());
         DateTestContact dataContact = new DateTestContact("test122", "test233", "test3", "null");
 
         app.getContactHelper().fillContactForm(dataContact, false);
         app.getContactHelper().clickUpdate();
         app.goTo().goToHome();
-        List<DateTestContact> after = app.getContactHelper().getContactList();
+        List<DateTestContact> after = app.getContactHelper().all();
 
         before.remove(before.size() - 1);
         before.add(dataContact);

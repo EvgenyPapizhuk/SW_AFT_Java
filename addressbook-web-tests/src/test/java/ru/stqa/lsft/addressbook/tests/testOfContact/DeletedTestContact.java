@@ -15,7 +15,7 @@ public class DeletedTestContact extends TestBase {
             app.getContactHelper().createContact(new DateTestContact("test1", "test2", "test1", "test1"), true);
         }
 
-        List<DateTestContact> before = app.getContactHelper().getContactList();
+        List<DateTestContact> before = app.getContactHelper().all();
         System.out.println("начальное количество запоисано");
 
         app.getContactHelper().selectContact();
@@ -23,7 +23,7 @@ public class DeletedTestContact extends TestBase {
         app.wd.switchTo().alert().accept();
         app.goTo().goToHome();
         Thread.sleep(2000);
-        List<DateTestContact> after = app.getContactHelper().getContactList();
+        List<DateTestContact> after = app.getContactHelper().all();
 
 
 

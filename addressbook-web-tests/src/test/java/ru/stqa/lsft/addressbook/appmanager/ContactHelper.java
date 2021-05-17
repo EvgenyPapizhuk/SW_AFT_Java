@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import ru.stqa.lsft.addressbook.model.Contacts;
 import ru.stqa.lsft.addressbook.model.DateTestContact;
 import ru.stqa.lsft.addressbook.model.DateTestGroup;
 
@@ -65,16 +66,15 @@ public class ContactHelper extends HelperBase {
         returnToContacts();
     }
 
-    public List<DateTestContact> getContactList() {
-        List<DateTestContact> contacts = new ArrayList<>();
+    public Contacts all() {
+        Contacts contacts = new Contacts();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         int numElement = 2;
         for (WebElement we : elements) {
             String lastName = we.findElement(By.xpath("//table[@id='maintable']/tbody/tr["+numElement+"]/td[2]")).getText();
             String firstName = we.findElement(By.xpath("//table[@id='maintable']/tbody/tr["+numElement+"]/td[3]")).getText();
-//            String firstName = we.findElement(By.xpath("//td[3]")).getText();
             DateTestContact date = new DateTestContact(firstName, null, lastName, null);
-            contacts.add(date);
+            contacts.add(new DateTestContact().withtFirstName(firstName).withttLastName(lastName));
             numElement++;
         }
         return contacts;

@@ -4,9 +4,9 @@ import java.util.Objects;
 
 public class DateTestContact {
 
-    private final String firstName;
-    private final String middleName;
-    private final String lastName;
+    private String firstName;
+    private String middleName;
+    private String lastName;
     private String group;
 
     @Override
@@ -37,6 +37,9 @@ public class DateTestContact {
         this.lastName = lastName;
     }
 
+    public DateTestContact() {
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -50,5 +53,25 @@ public class DateTestContact {
     }
 
     public String getGroup() { return group;
+    }
+
+    public DateTestContact withtFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    public DateTestContact withtMiddleName(String middleName) {
+        this.middleName = middleName;
+        return this;
+    }
+
+    public DateTestContact withttLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
+
+    public DateTestContact withtGroup(String group) {
+        this.group = group;
+        return this;
     }
 }

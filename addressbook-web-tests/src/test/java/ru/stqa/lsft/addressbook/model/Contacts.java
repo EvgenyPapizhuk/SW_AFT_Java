@@ -1,9 +1,9 @@
 package ru.stqa.lsft.addressbook.model;
 
 import com.google.common.collect.ForwardingList;
+import ru.stqa.lsft.addressbook.model.DateTestContact;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Contacts extends ForwardingList {
 
@@ -33,4 +33,17 @@ public class Contacts extends ForwardingList {
         contacts.remove(contact);
         return contacts;
     }
+
+    public Contacts sort1(Comparator<? super DateTestContact> c) {
+        Object[] a = this.toArray();
+        Arrays.sort(a, (Comparator) c);
+        ListIterator<DateTestContact> i = this.listIterator();
+        for (Object e : a) {
+            i.next();
+            i.set((DateTestContact) e);
+        }
+        return this;
+    }
+
+
 }
