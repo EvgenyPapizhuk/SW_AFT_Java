@@ -1,37 +1,39 @@
 package ru.stqa.lsft.addressbook.tests.testOfContact;
 
-import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import ru.stqa.lsft.addressbook.model.Contacts;
 import ru.stqa.lsft.addressbook.model.DateTestContact;
 import ru.stqa.lsft.addressbook.tests.TestBase;
 
 import java.util.Comparator;
-import java.util.List;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.junit.MatcherAssert.assertThat;
 
 public class ContactModificationTest extends TestBase {
 
+    @BeforeMethod
+    public void ensurePreconditions(){
+        app.goTo().goToHome();
+        if (!app.contact().isThereAContact()) {
+            app.contact().createContact(new DateTestContact("test1", "test2", "test1", "test1"), true);
+        }
+    }
+
     @Test
     public void testContactModification(){
+        Contacts before = app.contact().all();
+        DateTestContact modifiedContact = before.iterator().next();
+        DateTestContact dataContact = new DateTestContact()
+                .withtFirstName("test122").withtMiddleName("test233").withttLastName("test3").withtGroup("null");
+        app.contact().modify(modifiedContact);
+        app.contact().fillContactForm(dataContact, false);
+        app.contact().clickUpdate();
         app.goTo().goToHome();
-        if (!app.getContactHelper().isThereAContact()) {
-            app.getContactHelper().createContact(new DateTestContact("test1", "test2", "test1", "test1"), true);
-        }
-        List<DateTestContact> before = app.getContactHelper().all();
-        app.getContactHelper().initContactModificater(before.size());
-        DateTestContact dataContact = new DateTestContact("test122", "test233", "test3", "null");
-
-        app.getContactHelper().fillContactForm(dataContact, false);
-        app.getContactHelper().clickUpdate();
-        app.goTo().goToHome();
-        List<DateTestContact> after = app.getContactHelper().all();
-
-        before.remove(before.size() - 1);
-        before.add(dataContact);
-//        Comparator<? super DateTestContact> byHC = (o1, o2) -> Integer.compare(o1.hashCode(), o2.hashCode());
+        Contacts after = app.contact().all();
         Comparator<? super DateTestContact> byHC = (o1, o2) -> o1.toString().compareTo(o2.toString());
-        before.sort(byHC);
-        after.sort(byHC);
-        Assert.assertEquals(before, after);
+        assertThat(after.sort1(byHC),equalTo(before.withhout(modifiedContact).withAdded(dataContact).sort1(byHC)));
     }
 
 

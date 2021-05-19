@@ -5,7 +5,7 @@ import ru.stqa.lsft.addressbook.model.DateTestContact;
 
 import java.util.*;
 
-public class Contacts extends ForwardingList {
+public class Contacts extends ForwardingList<DateTestContact> {
 
     private List<DateTestContact> delegate;
 

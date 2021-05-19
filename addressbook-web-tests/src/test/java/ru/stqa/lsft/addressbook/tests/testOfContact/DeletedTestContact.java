@@ -11,19 +11,19 @@ public class DeletedTestContact extends TestBase {
 
     @Test
     public void testDeletedTestGroup() throws Exception {
-        if (!app.getContactHelper().isThereAContact()) {
-            app.getContactHelper().createContact(new DateTestContact("test1", "test2", "test1", "test1"), true);
+        if (!app.contact().isThereAContact()) {
+            app.contact().createContact(new DateTestContact("test1", "test2", "test1", "test1"), true);
         }
 
-        List<DateTestContact> before = app.getContactHelper().all();
+        List<DateTestContact> before = app.contact().all();
         System.out.println("начальное количество запоисано");
 
-        app.getContactHelper().selectContact();
-        app.getContactHelper().initDeletedContact();
+        app.contact().selectContact();
+        app.contact().initDeletedContact();
         app.wd.switchTo().alert().accept();
         app.goTo().goToHome();
         Thread.sleep(2000);
-        List<DateTestContact> after = app.getContactHelper().all();
+        List<DateTestContact> after = app.contact().all();
 
 
 
