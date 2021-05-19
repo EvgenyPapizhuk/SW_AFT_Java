@@ -17,7 +17,8 @@ public class ContactModificationTest extends TestBase {
     public void ensurePreconditions(){
         app.goTo().goToHome();
         if (!app.contact().isThereAContact()) {
-            app.contact().createContact(new DateTestContact("test1", "test2", "test1", "test1"), true);
+            app.contact().createContact(new DateTestContact()
+                    .withtFirstName("test1").withtMiddleName("test2").withttLastName("test1").withtGroup("test1"), true);
         }
     }
 
