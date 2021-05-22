@@ -8,6 +8,7 @@ public class DateTestContact {
     private String middleName;
     private String lastName;
     private String group;
+    private int id;
 
     @Override
     public boolean equals(Object o) {
@@ -72,6 +73,11 @@ public class DateTestContact {
 
     public DateTestContact withtGroup(String group) {
         this.group = group;
+        return this;
+    }
+
+    public DateTestContact withtId(int id) {
+        this.id = id;
         return this;
     }
 }

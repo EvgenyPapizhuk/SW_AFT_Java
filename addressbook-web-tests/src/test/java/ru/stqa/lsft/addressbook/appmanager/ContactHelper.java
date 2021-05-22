@@ -79,10 +79,12 @@ public class ContactHelper extends HelperBase {
         List<WebElement> elements = wd.findElements(By.name("entry"));
         int numElement = 2;
         for (WebElement we : elements) {
+            int id = Integer.parseInt(
+                    we.findElement(By.xpath("//table[@id='maintable']/tbody/tr["+numElement+"]/td[1]/input")).getAttribute("id"));
             String lastName = we.findElement(By.xpath("//table[@id='maintable']/tbody/tr["+numElement+"]/td[2]")).getText();
             String firstName = we.findElement(By.xpath("//table[@id='maintable']/tbody/tr["+numElement+"]/td[3]")).getText();
             DateTestContact date = new DateTestContact(firstName, null, lastName, null);
-            contacts.add(new DateTestContact().withtFirstName(firstName).withttLastName(lastName));
+            contacts.add(new DateTestContact().withtFirstName(firstName).withttLastName(lastName).withtId(id));
             numElement++;
         }
         return contacts;
