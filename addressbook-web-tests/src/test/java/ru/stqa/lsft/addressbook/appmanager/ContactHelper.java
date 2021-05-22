@@ -79,17 +79,19 @@ public class ContactHelper extends HelperBase {
                     .xpath("//table[@id='maintable']/tbody/tr["+numElement+"]/td[1]/input")).getAttribute("id"));
             String lastName = cells.get(1).getText();
             String firstName = cells.get(2).getText();
-            String testPhones = cells.get(5).getText();
-            String[] phones = cells.get(5).getText().split("\n");
-            System.out.println(phones.length);
-            if (phones.length == 3){
-                contacts.add(new ContactDate()
-                        .withtFirstName(firstName).withttLastName(lastName).withtId(id)
-                        .withtHomePhone(phones[0]).withtMobilePhone(phones[1]).withtWorkPhone(phones[2]));
-            }else {
-                contacts.add(new ContactDate()
-                        .withtFirstName(firstName).withttLastName(lastName).withtId(id));
-            }
+            String allPhones = cells.get(5).getText();
+            contacts.add(new ContactDate().withtFirstName(firstName).withttLastName(lastName).withtId(id)
+                    .withAllPhones(allPhones));
+//            String[] phones = cells.get(5).getText().split("\n");
+//            System.out.println(phones.length);
+//            if (phones.length == 3){
+//                contacts.add(new ContactDate()
+//                        .withtFirstName(firstName).withttLastName(lastName).withtId(id)
+//                        .withtHomePhone(phones[0]).withtMobilePhone(phones[1]).withtWorkPhone(phones[2]));
+//            }else {
+//                contacts.add(new ContactDate()
+//                        .withtFirstName(firstName).withttLastName(lastName).withtId(id));
+//            }
             numElement++;
         }
         return contacts;
