@@ -20,12 +20,22 @@ public class ContactDate {
     private String email;
     private String email2;
     private String email3;
+    private String allEmails;
+
+    public String getAllEmails() {
+        return allEmails;
+    }
+
+    public ContactDate withAllEmails(String allEmails) {
+        this.allEmails = allEmails;
+        return this;
+    }
 
     public String getPostalAddress() {
         return postalAddress;
     }
 
-    public ContactDate withtPostalAddress(String postalAddress) {
+    public ContactDate withPostalAddress(String postalAddress) {
         this.postalAddress = postalAddress;
         return this;
     }
@@ -34,7 +44,7 @@ public class ContactDate {
         return email;
     }
 
-    public ContactDate withtEmail(String email) {
+    public ContactDate withEmail(String email) {
         this.email = email;
         return this;
     }
@@ -52,7 +62,7 @@ public class ContactDate {
         return email3;
     }
 
-    public ContactDate withtEmail3(String email3) {
+    public ContactDate withEmail3(String email3) {
         this.email3 = email3;
         return this;
     }
