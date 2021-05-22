@@ -102,11 +102,21 @@ public class ContactHelper extends HelperBase {
         modify(contact);
         String firstName = wd.findElement(By.name("firstname")).getAttribute("value");
         String lastName = wd.findElement(By.name("lastname")).getAttribute("value");
+
         String home = wd.findElement(By.name("home")).getAttribute("value");
         String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
         String work = wd.findElement(By.name("work")).getAttribute("value");
+
+        String postalAddress = wd.findElement(By.name("address")).getText();
+
+        String email = wd.findElement(By.name("email")).getAttribute("value");
+        String email2 = wd.findElement(By.name("email2")).getAttribute("value");
+        String email3 = wd.findElement(By.name("email3")).getAttribute("value");
+
         wd.navigate().back();
         return new ContactDate().withtId(contact.getId()).withtFirstName(firstName).withttLastName(lastName)
-                .withtHomePhone(home).withtMobilePhone(mobile).withtWorkPhone(work);
+                .withtHomePhone(home).withtMobilePhone(mobile).withtWorkPhone(work)
+                .withtPostalAddress(postalAddress)
+                .withtEmail(email).withtEmail2(email2).withtEmail3(email3);
     }
 }

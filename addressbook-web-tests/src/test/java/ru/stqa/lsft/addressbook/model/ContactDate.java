@@ -9,10 +9,53 @@ public class ContactDate {
     private String lastName;
     private String group;
     private int id;
+
     private String homePhone;
     private String mobilePhone;
     private String workPhone;
     private String allPhones;
+
+    private String postalAddress;
+
+    private String email;
+    private String email2;
+    private String email3;
+
+    public String getPostalAddress() {
+        return postalAddress;
+    }
+
+    public ContactDate withtPostalAddress(String postalAddress) {
+        this.postalAddress = postalAddress;
+        return this;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public ContactDate withtEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public String getEmail2() {
+        return email2;
+    }
+
+    public ContactDate withtEmail2(String email2) {
+        this.email2 = email2;
+        return this;
+    }
+
+    public String getEmail3() {
+        return email3;
+    }
+
+    public ContactDate withtEmail3(String email3) {
+        this.email3 = email3;
+        return this;
+    }
 
     public String getAllPhones() {
         return allPhones;
