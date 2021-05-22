@@ -1,5 +1,6 @@
 package ru.stqa.lsft.addressbook.model;
 
+import java.io.File;
 import java.util.Objects;
 
 public class ContactDate {
@@ -21,6 +22,17 @@ public class ContactDate {
     private String email2;
     private String email3;
     private String allEmails;
+
+    private File photo;
+
+    public File getPhoto() {
+        return photo;
+    }
+
+    public ContactDate withPhoto(File photo) {
+        this.photo = photo;
+        return this;
+    }
 
     public String getAllEmails() {
         return allEmails;
