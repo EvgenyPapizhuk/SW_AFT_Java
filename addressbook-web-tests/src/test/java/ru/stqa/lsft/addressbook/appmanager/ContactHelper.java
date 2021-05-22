@@ -40,8 +40,11 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("(//img[@alt='Edit'])[" + num + "]"));
     }
 
+//    public void modify(DateTestContact modifiedContact) {
+//        click(By.xpath("//td[.=\"" + modifiedContact.getLastName() + "\"]/..//img[@alt='Edit']"));
+//    }
     public void modify(DateTestContact modifiedContact) {
-        click(By.xpath("//td[.=\"" + modifiedContact.getLastName() + "\"]/..//img[@alt='Edit']"));
+        click(By.xpath("//a[@href='edit.php?id=" + modifiedContact.getId() + "']"));
     }
 
     public void selectContact() {

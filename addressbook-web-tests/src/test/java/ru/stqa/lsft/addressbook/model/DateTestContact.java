@@ -56,6 +56,10 @@ public class DateTestContact {
     public String getGroup() { return group;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public DateTestContact withtFirstName(String firstName) {
         this.firstName = firstName;
         return this;
