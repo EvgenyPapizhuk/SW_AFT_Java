@@ -1,5 +1,9 @@
 package ru.stqa.lsft.addressbook.generators;
 
+import com.beust.jcommander.JCommander;
+import com.beust.jcommander.Parameter;
+import com.beust.jcommander.ParameterException;
+import org.junit.runners.Parameterized;
 import ru.stqa.lsft.addressbook.model.DateTestGroup;
 
 import java.io.File;
@@ -11,16 +15,30 @@ import java.util.List;
 
 public class GroupDataGenerator {
 
-    public static void main(String[] args) throws IOException {
-        System.out.println(new File(".").getAbsolutePath());
-        int count = Integer.parseInt(args[0]);
-        File file = new File(args[1]);
+    @Parameter(names = "-c", description = "Group count")
+    public int count;
 
-        List<DateTestGroup> groups = generateGroups(count);
-        save(groups, file);
+    @Parameter(names = "-f", description = "target File")
+    public String file;
+
+    public static void main(String[] args) throws IOException {
+        GroupDataGenerator generator = new GroupDataGenerator();
+        JCommander jCommander = new JCommander(generator);
+        try {
+            jCommander.parse(args);
+        } catch (ParameterException ex){
+            jCommander.usage();
+            return;
+        }
+        generator.run();
     }
 
-    private static void save(List<DateTestGroup> groups, File file) throws IOException {
+    private void run() throws IOException {
+        List<DateTestGroup> groups = generateGroups(count);
+        save(groups, new File(file));
+    }
+
+    private void save(List<DateTestGroup> groups, File file) throws IOException {
         Writer writer = new FileWriter(file);
         for (DateTestGroup group : groups) {
             writer.write(String.format("%s;%s;%s \r\n", group.getName(), group.getHeader(), group.getFooter()));
@@ -29,7 +47,7 @@ public class GroupDataGenerator {
 
     }
 
-    private static List<DateTestGroup> generateGroups(int count) {
+    private List<DateTestGroup> generateGroups(int count) {
         List<DateTestGroup> groups = new ArrayList<DateTestGroup>();
         for (int i = 0; i < count; i++) {
             groups.add(new DateTestGroup().withName(String.format("test %s", i))
