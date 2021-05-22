@@ -28,7 +28,6 @@ public class DeletedTestContact extends TestBase {
         Contacts before = app.contact().all();
         System.out.println("начальное количество запоисано");
         DateTestContact deletedContact = before.iterator().next();
-//        app.contact().selectContact();
         app.contact().selectContact(deletedContact);
         app.contact().initDeletedContact();
         app.wd.switchTo().alert().accept();
