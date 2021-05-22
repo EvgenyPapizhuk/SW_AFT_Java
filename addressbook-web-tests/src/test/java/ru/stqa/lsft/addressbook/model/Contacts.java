@@ -1,13 +1,12 @@
 package ru.stqa.lsft.addressbook.model;
 
 import com.google.common.collect.ForwardingList;
-import ru.stqa.lsft.addressbook.model.DateTestContact;
 
 import java.util.*;
 
-public class Contacts extends ForwardingList<DateTestContact> {
+public class Contacts extends ForwardingList<ContactDate> {
 
-    private List<DateTestContact> delegate;
+    private List<ContactDate> delegate;
 
     public Contacts(Contacts contacts) {
         this.delegate = new ArrayList<>(contacts.delegate);
@@ -22,25 +21,25 @@ public class Contacts extends ForwardingList<DateTestContact> {
         return delegate;
     }
 
-    public Contacts withAdded(DateTestContact contact) {
+    public Contacts withAdded(ContactDate contact) {
         Contacts contacts = new Contacts(this);
         contacts.add(contact);
         return contacts;
     }
 
-    public Contacts withhout(DateTestContact contact) {
+    public Contacts withhout(ContactDate contact) {
         Contacts contacts = new Contacts(this);
         contacts.remove(contact);
         return contacts;
     }
 
-    public Contacts sort1(Comparator<? super DateTestContact> c) {
+    public Contacts sort1(Comparator<? super ContactDate> c) {
         Object[] a = this.toArray();
         Arrays.sort(a, (Comparator) c);
-        ListIterator<DateTestContact> i = this.listIterator();
+        ListIterator<ContactDate> i = this.listIterator();
         for (Object e : a) {
             i.next();
-            i.set((DateTestContact) e);
+            i.set((ContactDate) e);
         }
         return this;
     }

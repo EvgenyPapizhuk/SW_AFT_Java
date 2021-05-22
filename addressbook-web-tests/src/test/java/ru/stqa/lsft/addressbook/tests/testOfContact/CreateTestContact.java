@@ -2,7 +2,7 @@ package ru.stqa.lsft.addressbook.tests.testOfContact;
 
 import org.testng.annotations.Test;
 import ru.stqa.lsft.addressbook.model.Contacts;
-import ru.stqa.lsft.addressbook.model.DateTestContact;
+import ru.stqa.lsft.addressbook.model.ContactDate;
 import ru.stqa.lsft.addressbook.tests.TestBase;
 
 import java.util.Comparator;
@@ -17,13 +17,13 @@ public class CreateTestContact extends TestBase {
     public void testCreateContact() throws Exception {
         app.goTo().goToHome();
         Contacts before = app.contact().all();
-        DateTestContact dataContact = new DateTestContact()
+        ContactDate dataContact = new ContactDate()
                 .withtFirstName("test1").withtMiddleName("test2").withttLastName("test").withtGroup("test1");
         app.contact().createContact(dataContact, true);
 
         Contacts after = app.contact().all();
 
-        Comparator<? super DateTestContact> byHC = (o1, o2) -> Integer.compare(o1.hashCode(), o2.hashCode());
+        Comparator<? super ContactDate> byHC = (o1, o2) -> Integer.compare(o1.hashCode(), o2.hashCode());
 //        before.sort(byHC);
 //        after.sort(byHC);
 //        Assert.assertEquals(before, after);
