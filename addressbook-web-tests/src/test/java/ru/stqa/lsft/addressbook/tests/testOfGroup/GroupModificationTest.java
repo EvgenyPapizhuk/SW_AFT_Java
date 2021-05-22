@@ -1,5 +1,6 @@
 package ru.stqa.lsft.addressbook.tests.testOfGroup;
 
+import org.hamcrest.junit.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -32,11 +33,10 @@ public class GroupModificationTest extends TestBase {
 
         DateTestGroup group1 = new DateTestGroup().withtId(modifiedGroup.getId()).withName("test2").withHeader("test22").withFooter("test3");
         app.group().modify(group1);
+        MatcherAssert.assertThat(before.size(), equalTo(app.group().count()));
         Groups after = app.group().all();
         before.remove(modifiedGroup);
         before.add(group1);
-
-        Assert.assertEquals(before.size(), after.size());
         assertThat(after, equalTo(before.withhout(modifiedGroup).withAdded(group1)));
     }
 

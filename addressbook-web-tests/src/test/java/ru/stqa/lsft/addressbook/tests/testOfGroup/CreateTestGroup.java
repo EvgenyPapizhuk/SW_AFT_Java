@@ -1,7 +1,5 @@
 package ru.stqa.lsft.addressbook.tests.testOfGroup;
 
-import org.hamcrest.junit.MatcherAssert;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.lsft.addressbook.model.DateTestGroup;
 import ru.stqa.lsft.addressbook.model.Groups;
@@ -19,11 +17,25 @@ public class CreateTestGroup extends TestBase {
     Groups before = app.group().all();
     DateTestGroup group1 = new DateTestGroup().withName("test2");
     app.group().create(group1);
+    assertThat(before.size()+1, equalTo(app.group().count()));
     Groups after = app.group().all();
     assertThat(before.size() + 1, equalTo(after.size()));
 
     assertThat(after, equalTo(
             before.withAdded(group1.withtId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
+
+  @Test
+  public void testBadUntitledCase() throws Exception {
+    app.goTo().groupPage();
+    Groups before = app.group().all();
+    DateTestGroup group1 = new DateTestGroup().withName("test2'");
+    app.group().create(group1);
+    assertThat(before.size(), equalTo(app.group().count()));
+    Groups after = app.group().all();
+
+    assertThat(after, equalTo(before));
+  }
+
 
 }

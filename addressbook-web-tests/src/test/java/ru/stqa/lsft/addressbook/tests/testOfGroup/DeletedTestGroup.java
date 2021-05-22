@@ -1,5 +1,6 @@
 package ru.stqa.lsft.addressbook.tests.testOfGroup;
 
+import org.hamcrest.junit.MatcherAssert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.lsft.addressbook.model.DateTestGroup;
@@ -26,8 +27,8 @@ public class DeletedTestGroup extends TestBase {
     Groups before = app.group().all();
     DateTestGroup deletedGroup = before.iterator().next();
     app.group().delete(deletedGroup);
+    MatcherAssert.assertThat(before.size()-1, equalTo(app.group().count()));
     Groups after = app.group().all();
-    assertEquals(before.size() - 1, after.size());
     assertThat(after, equalTo(before.withhout(deletedGroup)));
 
   }
