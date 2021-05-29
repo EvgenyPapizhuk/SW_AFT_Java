@@ -1,5 +1,6 @@
 package ru.stqa.lsft.addressbook.tests.testOfGroup;
 
+import com.thoughtworks.xstream.XStream;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.lsft.addressbook.model.DateTestGroup;
@@ -10,6 +11,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.junit.MatcherAssert.*;
@@ -18,15 +20,17 @@ public class CreateTestGroup extends TestBase {
 
   @DataProvider
   public Iterator<Object[]> validGroups() throws IOException {
-    List<Object[]> list = new ArrayList<Object[]>();
-    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/group.csv")));
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/groups.xml")));
+    String xml = "";
     String line = reader.readLine();
       while (line != null) {
-          String[] split = line.split(";");
-          list.add(new Object[]{new DateTestGroup().withName(split[0]).withHeader(split[1]).withFooter(split[2])});
+          xml += line;
           line = reader.readLine();
       }
-    return list.iterator();
+      XStream xStream = new XStream();
+      xStream.processAnnotations(DateTestGroup.class);
+      List<DateTestGroup> groups = (List<DateTestGroup>) xStream.fromXML(xml);
+      return groups.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
   }
 
 

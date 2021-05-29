@@ -3,7 +3,7 @@ package ru.stqa.lsft.addressbook.generators;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
-import org.junit.runners.Parameterized;
+import com.thoughtworks.xstream.XStream;
 import ru.stqa.lsft.addressbook.model.DateTestGroup;
 
 import java.io.File;
@@ -21,6 +21,9 @@ public class GroupDataGenerator {
     @Parameter(names = "-f", description = "target File")
     public String file;
 
+    @Parameter(names = "-d", description = "Data format")
+    public String format;
+
     public static void main(String[] args) throws IOException {
         GroupDataGenerator generator = new GroupDataGenerator();
         JCommander jCommander = new JCommander(generator);
@@ -35,16 +38,30 @@ public class GroupDataGenerator {
 
     private void run() throws IOException {
         List<DateTestGroup> groups = generateGroups(count);
-        save(groups, new File(file));
+        if (format.equals("csv")) {
+            saveAsCsv(groups, new File(file));
+        } else if (format.equals("xml")) {
+            saveAsXml(groups, new File(file));
+        } else {
+            System.out.println("Unrecognized format " + format);
+        }
     }
 
-    private void save(List<DateTestGroup> groups, File file) throws IOException {
+    private void saveAsXml(List<DateTestGroup> groups, File file) throws IOException {
+        XStream xStream = new XStream();
+        xStream.processAnnotations(DateTestGroup.class);
+        String xml = xStream.toXML(groups);
+        Writer writer = new FileWriter(file);
+        writer.write(xml);
+        writer.close();
+    }
+
+    private void saveAsCsv(List<DateTestGroup> groups, File file) throws IOException {
         Writer writer = new FileWriter(file);
         for (DateTestGroup group : groups) {
             writer.write(String.format("%s;%s;%s \r\n", group.getName(), group.getHeader(), group.getFooter()));
         }
         writer.close();
-
     }
 
     private List<DateTestGroup> generateGroups(int count) {
