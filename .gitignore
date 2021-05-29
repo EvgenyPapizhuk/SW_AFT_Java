@@ -16,3 +16,4 @@ gradle-app.setting
 sandbox/out/production/classes/ru/aftlessons/sandbox/Point.class
 sandbox/out/production/classes/ru/aftlessons/sandbox/printHelloWorld.class
 sandbox/out/test/classes/ru/aftlessons/sandbox/PointTest.class
+*.log
