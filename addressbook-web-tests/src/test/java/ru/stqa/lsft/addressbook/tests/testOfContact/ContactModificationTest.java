@@ -16,7 +16,8 @@ public class ContactModificationTest extends TestBase {
     @BeforeMethod
     public void ensurePreconditions(){
         app.goTo().goToHome();
-        if (!app.contact().isThereAContact()) {
+//        if (!app.contact().isThereAContact()) {
+            if (app.db().contacts().size() == 0) {
             app.contact().createContact(new ContactDate()
                     .withtFirstName("test1").withtMiddleName("test2").withttLastName("test1").withtGroup("test1"), true);
         }
@@ -24,7 +25,7 @@ public class ContactModificationTest extends TestBase {
 
     @Test
     public void testContactModification(){
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         ContactDate modifiedContact = before.iterator().next();
         ContactDate dataContact = new ContactDate()
                 .withtFirstName("test122").withtMiddleName("test233").withttLastName("test3").withtGroup("null");
@@ -32,7 +33,7 @@ public class ContactModificationTest extends TestBase {
         app.contact().fillContactForm(dataContact, false);
         app.contact().clickUpdate();
         app.goTo().goToHome();
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
         Comparator<? super ContactDate> byHC = (o1, o2) -> o1.toString().compareTo(o2.toString());
         assertThat(after.sort1(byHC),equalTo(before.withhout(modifiedContact).withAdded(dataContact).sort1(byHC)));
     }

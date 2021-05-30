@@ -16,6 +16,10 @@ public class Contacts extends ForwardingList<ContactDate> {
         this.delegate = new ArrayList<>();
     }
 
+    public Contacts(Collection<ContactDate> groups) {
+        this.delegate = new ArrayList<ContactDate>(groups);
+    }
+
     @Override
     protected List delegate() {
         return delegate;

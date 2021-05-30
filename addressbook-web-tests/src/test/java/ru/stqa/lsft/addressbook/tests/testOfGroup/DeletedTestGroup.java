@@ -9,14 +9,13 @@ import ru.stqa.lsft.addressbook.tests.TestBase;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.testng.Assert.assertEquals;
 
 public class DeletedTestGroup extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions(){
     app.goTo().groupPage();
-    if (app.group().all().size() == 0) {
+    if (app.db().groups().size() == 0) {
       app.group().create(new DateTestGroup().withName("test1"));
     }
   }
@@ -24,15 +23,12 @@ public class DeletedTestGroup extends TestBase {
 
   @Test
   public void testDeletedTestGroup() throws Exception {
-    Groups before = app.group().all();
+    Groups before = app.db().groups();
     DateTestGroup deletedGroup = before.iterator().next();
     app.group().delete(deletedGroup);
     MatcherAssert.assertThat(before.size()-1, equalTo(app.group().count()));
-    Groups after = app.group().all();
+    Groups after = app.db().groups();
     assertThat(after, equalTo(before.withhout(deletedGroup)));
-
   }
-
-
 
 }

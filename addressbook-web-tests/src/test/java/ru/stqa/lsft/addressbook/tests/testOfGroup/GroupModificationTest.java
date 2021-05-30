@@ -26,10 +26,10 @@ public class GroupModificationTest extends TestBase {
             app.group().create(new DateTestGroup().withName("test1"));
         }
 
-        app.goTo().groupPage();
-        if (app.group().all().size() == 0) {
-            app.group().create(new DateTestGroup().withName("test1"));
-        }
+//        app.goTo().groupPage();
+//        if (app.group().all().size() == 0) {
+//            app.group().create(new DateTestGroup().withName("test1"));
+//        }
     }
 
     @Test

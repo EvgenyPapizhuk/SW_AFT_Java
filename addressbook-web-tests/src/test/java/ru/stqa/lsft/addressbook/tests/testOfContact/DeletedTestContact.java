@@ -14,7 +14,7 @@ public class DeletedTestContact extends TestBase {
     @BeforeMethod
     public void ensurePreconditions(){
         app.goTo().goToHome();
-        if (!app.contact().isThereAContact()) {
+        if (app.db().contacts().size() == 0) {
             app.contact().createContact(new ContactDate()
                     .withtFirstName("test1").withtMiddleName("test2").withttLastName("test1").withtGroup("test1"), true);
         }
@@ -22,7 +22,7 @@ public class DeletedTestContact extends TestBase {
 
     @Test
     public void testDeletedTestGroup() throws Exception {
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         System.out.println("начальное количество запоисано");
         ContactDate deletedContact = before.iterator().next();
         app.contact().selectContact(deletedContact);
@@ -30,7 +30,7 @@ public class DeletedTestContact extends TestBase {
         app.wd.switchTo().alert().accept();
         app.goTo().goToHome();
         Thread.sleep(2000);
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
         System.out.println("Проверка количества прошла");
         assertThat(after, equalTo(before.withhout(deletedContact)));
     }

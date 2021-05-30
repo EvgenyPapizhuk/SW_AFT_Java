@@ -55,10 +55,10 @@ public class CreateTestGroup extends TestBase {
   public void testUntitledCase(DateTestGroup group1) throws Exception {
 //      DateTestGroup group1 = new DateTestGroup().withName(name).withHeader(header).withFooter(footer);
       app.goTo().groupPage();
-      Groups before = app.group().all();
+      Groups before = app.db().groups();
       app.group().create(group1);
       assertThat(before.size()+1, equalTo(app.group().count()));
-      Groups after = app.group().all();
+      Groups after = app.db().groups();
       assertThat(before.size() + 1, equalTo(after.size()));
 
       assertThat(after, equalTo(
@@ -68,11 +68,11 @@ public class CreateTestGroup extends TestBase {
   @Test(enabled = false)
   public void testBadUntitledCase() throws Exception {
     app.goTo().groupPage();
-    Groups before = app.group().all();
+    Groups before = app.db().groups();
     DateTestGroup group1 = new DateTestGroup().withName("test2'");
     app.group().create(group1);
     assertThat(before.size(), equalTo(app.group().count()));
-    Groups after = app.group().all();
+    Groups after = app.db().groups();
 
     assertThat(after, equalTo(before));
   }

@@ -57,13 +57,13 @@ public class CreateTestContact extends TestBase {
     @Test (dataProvider = "validContactsFromXml")
     public void testCreateContact(ContactDate dataContact) throws Exception {
         app.goTo().goToHome();
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         File photo = new File("src/test/resources/shrimp.jpg");
 //        ContactDate dataContact = new ContactDate()
 //                .withtFirstName("test1").withtMiddleName("test2").withttLastName("test").withPhoto(photo);
         app.contact().createContact(dataContact.withPhoto(photo), true);
 
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
 
         Comparator<? super ContactDate> byHC = (o1, o2) -> Integer.compare(o1.hashCode(), o2.hashCode());
         System.out.println("before: " + before.size());

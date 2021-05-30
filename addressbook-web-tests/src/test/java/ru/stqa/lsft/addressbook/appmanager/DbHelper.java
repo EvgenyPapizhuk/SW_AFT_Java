@@ -6,6 +6,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import ru.stqa.lsft.addressbook.model.ContactDate;
+import ru.stqa.lsft.addressbook.model.Contacts;
 import ru.stqa.lsft.addressbook.model.DateTestGroup;
 import ru.stqa.lsft.addressbook.model.Groups;
 
@@ -35,5 +36,16 @@ public class DbHelper {
         return new Groups(result);
     }
 
+    public Contacts contacts() {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        List<ContactDate> result = session.createQuery( "from ContactDate" ).list();
+        for ( ContactDate contact : result ) {
+            System.out.println(contact);
+        }
+        session.getTransaction().commit();
+        session.close();
+        return new Contacts(result);
+    }
 
 }
