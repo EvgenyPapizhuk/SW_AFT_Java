@@ -19,7 +19,7 @@ public class ContactModificationTest extends TestBase {
 //        if (!app.contact().isThereAContact()) {
             if (app.db().contacts().size() == 0) {
             app.contact().createContact(new ContactDate()
-                    .withtFirstName("test1").withtMiddleName("test2").withttLastName("test1").withtGroup("test1"), true);
+                    .withtFirstName("test1").withtMiddleName("test2").withttLastName("test1"), true);
         }
     }
 
@@ -28,7 +28,7 @@ public class ContactModificationTest extends TestBase {
         Contacts before = app.db().contacts();
         ContactDate modifiedContact = before.iterator().next();
         ContactDate dataContact = new ContactDate()
-                .withtId(modifiedContact.getId()).withtFirstName("test122").withtMiddleName("test233").withttLastName("lastName 0").withtGroup("null");
+                .withtId(modifiedContact.getId()).withtFirstName("test122").withtMiddleName("test233").withttLastName("lastName 0");
         app.contact().modify(modifiedContact);
         app.contact().fillContactForm(dataContact, false);
         app.contact().clickUpdate();

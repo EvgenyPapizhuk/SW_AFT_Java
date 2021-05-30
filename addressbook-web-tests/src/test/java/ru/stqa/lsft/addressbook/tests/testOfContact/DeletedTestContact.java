@@ -16,7 +16,7 @@ public class DeletedTestContact extends TestBase {
         app.goTo().goToHome();
         if (app.db().contacts().size() == 0) {
             app.contact().createContact(new ContactDate()
-                    .withtFirstName("test1").withtMiddleName("test2").withttLastName("test1").withtGroup("test1"), true);
+                    .withtFirstName("test1").withtMiddleName("test2").withttLastName("test1"), true);
         }
     }
 

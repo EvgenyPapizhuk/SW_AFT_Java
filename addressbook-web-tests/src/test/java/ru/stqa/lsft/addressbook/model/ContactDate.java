@@ -8,7 +8,9 @@ import org.hibernate.annotations.Type;
 import javax.persistence.*;
 import java.io.File;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @XStreamAlias("contact")
 @Entity
@@ -24,9 +26,10 @@ public class ContactDate {
     @Expose
     @Column(name = "lastname")
     private String lastName;
-    @XStreamOmitField
-    @Transient
-    private String group;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "address_in_groups", joinColumns =@JoinColumn(name = "id"), inverseJoinColumns =@JoinColumn(name = "group_id") )
+    private Set<DateTestGroup> groups = new HashSet<DateTestGroup>();
 
     @XStreamOmitField
     @Id
@@ -150,8 +153,7 @@ public class ContactDate {
         return Objects.hash(firstName, middleName, lastName, id);
     }
 
-    public ContactDate(String firstName, String middleName, String lastName, String group) {
-        this.group = group;
+    public ContactDate(String firstName, String middleName, String lastName) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
@@ -170,9 +172,6 @@ public class ContactDate {
 
     public String getLastName() {
         return lastName;
-    }
-
-    public String getGroup() { return group;
     }
 
     public int getId() {
@@ -206,11 +205,6 @@ public class ContactDate {
         return this;
     }
 
-    public ContactDate withtGroup(String group) {
-        this.group = group;
-        return this;
-    }
-
     public ContactDate withtId(int id) {
         this.id = id;
         return this;
@@ -231,4 +225,7 @@ public class ContactDate {
         return this;
     }
 
+    public Groups getGroups() {
+        return new Groups(groups);
+    }
 }
