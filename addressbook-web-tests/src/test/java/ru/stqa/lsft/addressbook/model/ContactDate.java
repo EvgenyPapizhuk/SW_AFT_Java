@@ -3,44 +3,73 @@ package ru.stqa.lsft.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
+import java.util.Date;
 import java.util.Objects;
 
 @XStreamAlias("contact")
+@Entity
+@Table(name = "addressbook")
 public class ContactDate {
 
     @Expose
+    @Column(name = "firstname")
     private String firstName;
     @Expose
+    @Column(name = "middlename")
     private String middleName;
     @Expose
+    @Column(name = "lastname")
     private String lastName;
     @XStreamOmitField
+    @Transient
     private String group;
+
     @XStreamOmitField
+    @Id
+    @Column(name = "id")
     private int id;
 
+    @Column(name = "home")
+    @Type(type = "text")
     private String homePhone;
+
+    @Column(name = "mobile")
+    @Type(type = "text")
     private String mobilePhone;
+
+    @Column(name = "work")
+    @Type(type = "text")
     private String workPhone;
+
+    @Transient
     private String allPhones;
 
+    @Transient
     private String postalAddress;
 
+    @Transient
     private String email;
+    @Transient
     private String email2;
+    @Transient
     private String email3;
+    @Transient
     private String allEmails;
 
-    private File photo;
+    @Column(name = "photo")
+    @Type(type = "text")
+    private String photo;
 
     public File getPhoto() {
-        return photo;
+        return new File(photo);
     }
 
     public ContactDate withPhoto(File photo) {
-        this.photo = photo;
+        this.photo = photo.getPath();
         return this;
     }
 
@@ -51,6 +80,15 @@ public class ContactDate {
     public ContactDate withAllEmails(String allEmails) {
         this.allEmails = allEmails;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "ContactDate{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", id=" + id +
+                '}';
     }
 
     public String getPostalAddress() {
@@ -104,14 +142,6 @@ public class ContactDate {
         if (o == null || getClass() != o.getClass()) return false;
         ContactDate that = (ContactDate) o;
         return Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName);
-    }
-
-    @Override
-    public String toString() {
-        return "DateTestContact{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
     }
 
     @Override

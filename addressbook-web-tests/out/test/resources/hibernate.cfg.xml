@@ -23,5 +23,6 @@
     <property name="hbm2ddl.auto">validate</property>
     <!-- Names the annotated entity class -->
     <mapping class="ru.stqa.lsft.addressbook.model.DateTestGroup"/>
+    <mapping class="ru.stqa.lsft.addressbook.model.ContactDate"/>
     </session-factory>
 </hibernate-configuration>
