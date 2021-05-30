@@ -68,7 +68,7 @@ public class CreateTestContact extends TestBase {
         Comparator<? super ContactDate> byHC = (o1, o2) -> Integer.compare(o1.hashCode(), o2.hashCode());
         System.out.println("before: " + before.size());
         System.out.println("after: " + after.size());
-        assertThat(after.sort1(byHC),equalTo(before.withAdded(dataContact).sort1(byHC)));
+        assertThat(after,equalTo(before.withAdded(dataContact.withtId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
     }
 
     @Test(enabled = false)

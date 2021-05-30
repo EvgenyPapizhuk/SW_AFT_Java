@@ -24,7 +24,9 @@ public class ContactHelper extends HelperBase {
         type(By.name("firstname"), dateContact.getFirstName());
         type(By.name("middlename"), dateContact.getMiddleName());
         type(By.name("lastname"), dateContact.getLastName());
-        typeFile(By.name("photo"), dateContact.getPhoto());
+        if (create) {
+            typeFile(By.name("photo"), dateContact.getPhoto());
+        }
 //        if (create) {
 //            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(dateContact.getGroup());
 //        } else {

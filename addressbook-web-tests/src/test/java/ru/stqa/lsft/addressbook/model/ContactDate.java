@@ -86,6 +86,7 @@ public class ContactDate {
     public String toString() {
         return "ContactDate{" +
                 "firstName='" + firstName + '\'' +
+                ", middleName='" + middleName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", id=" + id +
                 '}';
@@ -141,12 +142,12 @@ public class ContactDate {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ContactDate that = (ContactDate) o;
-        return Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName);
+        return id == that.id && Objects.equals(firstName, that.firstName) && Objects.equals(middleName, that.middleName) && Objects.equals(lastName, that.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName);
+        return Objects.hash(firstName, middleName, lastName, id);
     }
 
     public ContactDate(String firstName, String middleName, String lastName, String group) {

@@ -28,14 +28,32 @@ public class ContactModificationTest extends TestBase {
         Contacts before = app.db().contacts();
         ContactDate modifiedContact = before.iterator().next();
         ContactDate dataContact = new ContactDate()
-                .withtFirstName("test122").withtMiddleName("test233").withttLastName("test3").withtGroup("null");
+                .withtId(modifiedContact.getId()).withtFirstName("test122").withtMiddleName("test233").withttLastName("lastName 0").withtGroup("null");
         app.contact().modify(modifiedContact);
+        System.out.println("Дошли до заполнения");
         app.contact().fillContactForm(dataContact, false);
+        System.out.println("Прошли заполнение");
         app.contact().clickUpdate();
         app.goTo().goToHome();
         Contacts after = app.db().contacts();
         Comparator<? super ContactDate> byHC = (o1, o2) -> o1.toString().compareTo(o2.toString());
-        assertThat(after.sort1(byHC),equalTo(before.withhout(modifiedContact).withAdded(dataContact).sort1(byHC)));
+
+        System.out.println("Список до:");
+        for ( ContactDate contact : before ) {
+            System.out.println(contact);
+        }
+        System.out.println("Список до(дополненный):");
+        for ( ContactDate contact : before.withhout(modifiedContact).withAdded(dataContact) ) {
+            System.out.println(contact);
+        }
+
+        System.out.println("Список после:");
+        for ( ContactDate contact : after ) {
+            System.out.println(contact);
+        }
+
+
+        assertThat(after,equalTo(before.withhout(modifiedContact).withAdded(dataContact)));
     }
 
 

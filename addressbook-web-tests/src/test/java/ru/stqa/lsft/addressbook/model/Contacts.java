@@ -1,27 +1,28 @@
 package ru.stqa.lsft.addressbook.model;
 
 import com.google.common.collect.ForwardingList;
+import com.google.common.collect.ForwardingSet;
 
 import java.util.*;
 
-public class Contacts extends ForwardingList<ContactDate> {
+public class Contacts extends ForwardingSet<ContactDate> {
 
-    private List<ContactDate> delegate;
+    private Set<ContactDate> delegate;
 
     public Contacts(Contacts contacts) {
-        this.delegate = new ArrayList<>(contacts.delegate);
+        this.delegate = new HashSet<ContactDate>(contacts.delegate);
     }
 
     public Contacts() {
-        this.delegate = new ArrayList<>();
+        this.delegate = new HashSet<ContactDate>();
     }
 
     public Contacts(Collection<ContactDate> groups) {
-        this.delegate = new ArrayList<ContactDate>(groups);
+        this.delegate = new HashSet<ContactDate>(groups);
     }
 
     @Override
-    protected List delegate() {
+    protected Set<ContactDate> delegate() {
         return delegate;
     }
 
@@ -37,16 +38,16 @@ public class Contacts extends ForwardingList<ContactDate> {
         return contacts;
     }
 
-    public Contacts sort1(Comparator<? super ContactDate> c) {
-        Object[] a = this.toArray();
-        Arrays.sort(a, (Comparator) c);
-        ListIterator<ContactDate> i = this.listIterator();
-        for (Object e : a) {
-            i.next();
-            i.set((ContactDate) e);
-        }
-        return this;
-    }
+//    public Contacts sort1(Comparator<? super ContactDate> c) {
+//        Object[] a = this.toArray();
+//        Arrays.sort(a, (Comparator) c);
+//        ListIterator<ContactDate> i = this.listIterator();
+//        for (Object e : a) {
+//            i.next();
+//            i.set((ContactDate) e);
+//        }
+//        return this;
+//    }
 
 
 }
