@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import ru.stqa.lsft.addressbook.model.Contacts;
 import ru.stqa.lsft.addressbook.model.ContactDate;
 import ru.stqa.lsft.addressbook.model.DateTestGroup;
+import ru.stqa.lsft.addressbook.model.Groups;
 import ru.stqa.lsft.addressbook.tests.TestBase;
 
 import java.io.BufferedReader;
@@ -56,6 +57,7 @@ public class CreateTestContact extends TestBase {
 
     @Test (dataProvider = "validContactsFromXml")
     public void testCreateContact(ContactDate dataContact) throws Exception {
+        Groups groups = app.db().groups();
         app.goTo().goToHome();
         Contacts before = app.db().contacts();
         File photo = new File("src/test/resources/shrimp.jpg");

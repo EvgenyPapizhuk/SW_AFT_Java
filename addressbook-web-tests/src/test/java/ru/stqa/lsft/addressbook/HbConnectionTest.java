@@ -46,6 +46,7 @@ public class HbConnectionTest {
         for ( ContactDate contact : result ) {
             System.out.println(contact);
             System.out.println(contact.getGroups());
+            System.out.println("Разделитель-----------");
         }
     }
 }

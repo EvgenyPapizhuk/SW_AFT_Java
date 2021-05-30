@@ -32,10 +32,10 @@ public class DateTestGroup {
     private String footer;
 
     @ManyToMany(mappedBy = "groups")
-    private Set<ContactDate> groups = new HashSet<ContactDate>();
+    private Set<ContactDate> contacts = new HashSet<ContactDate>();
 
-    public Contacts getGroups() {
-        return new Contacts(groups);
+    public Contacts getContacts() {
+        return new Contacts(contacts);
     }
 
     public String getName() {
