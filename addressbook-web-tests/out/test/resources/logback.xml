@@ -1,9 +1,11 @@
 <configuration>
 
     <timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss"/>
+    <property name="USER_HOME" value="/home/sebastien" />
+
 
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>test-${bySecond}.log</file>
+        <file>logs/test-${bySecond}.log</file>
 
         <!-- set immediateFlush to false for much higher logging throughput -->
         <immediateFlush>true</immediateFlush>
