@@ -69,6 +69,7 @@ public class CreateTestContact extends TestBase {
         System.out.println("before: " + before.size());
         System.out.println("after: " + after.size());
         assertThat(after,equalTo(before.withAdded(dataContact.withtId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+        verifyContactListInUI();
     }
 
     @Test(enabled = false)
@@ -78,6 +79,7 @@ public class CreateTestContact extends TestBase {
         File photo = new File("src/test/resources/shrimp.jpg");
         System.out.println(photo.getAbsolutePath());
         System.out.println(photo.exists());
+        verifyContactListInUI();
     }
 
 }

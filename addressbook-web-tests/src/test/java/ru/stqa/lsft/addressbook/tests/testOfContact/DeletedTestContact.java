@@ -33,5 +33,6 @@ public class DeletedTestContact extends TestBase {
         Contacts after = app.db().contacts();
         System.out.println("Проверка количества прошла");
         assertThat(after, equalTo(before.withhout(deletedContact)));
+        verifyContactListInUI();
     }
 }

@@ -29,6 +29,8 @@ public class DeletedTestGroup extends TestBase {
     MatcherAssert.assertThat(before.size()-1, equalTo(app.group().count()));
     Groups after = app.db().groups();
     assertThat(after, equalTo(before.withhout(deletedGroup)));
+
+    verifyGroupListInUI();
   }
 
 }
