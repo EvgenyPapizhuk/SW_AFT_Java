@@ -15,6 +15,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "group_list")
 public class DateTestGroup {
+
     @XStreamOmitField
     @Id
     @Column(name = "group_id")
@@ -46,24 +47,24 @@ public class DateTestGroup {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        DateTestGroup group = (DateTestGroup) o;
-        return id == group.id && Objects.equals(name, group.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name);
-    }
-
-    @Override
     public String toString() {
         return "DateTestGroup{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DateTestGroup group = (DateTestGroup) o;
+        return id == group.id && Objects.equals(name, group.name) && Objects.equals(header, group.header) && Objects.equals(footer, group.footer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, header, footer);
     }
 
     public int getId() {
