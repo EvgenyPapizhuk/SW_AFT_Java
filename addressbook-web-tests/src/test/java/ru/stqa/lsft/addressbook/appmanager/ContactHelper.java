@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.lsft.addressbook.model.Contacts;
 import ru.stqa.lsft.addressbook.model.ContactDate;
+import ru.stqa.lsft.addressbook.model.DateTestGroup;
 
 import java.util.List;
 
@@ -47,7 +48,20 @@ public class ContactHelper extends HelperBase {
     }
 
     public void selectContact(ContactDate deletedContact) {
-        click(By.xpath("//td[.=\"" + deletedContact.getLastName() + "\"]/..//input[@name='selected[]']"));
+//        click(By.xpath("//td[.=\"" + deletedContact.getLastName() + "\"]/..//input[@name='selected[]']"));
+        click(By.xpath("//input[@id=\"" + deletedContact.getId() + "\"]"));
+    }
+
+    public void selectGroup(DateTestGroup operationGroup) {
+//        click(By.xpath("//td[.=\"" + operationGroup.getId() + "\"]/..//input[@name='selected[]']"));
+        click(By.xpath("//select[@name=\"to_group\"]"));
+        click(By.xpath("//select[@name=\"to_group\"]/option[@value=\"" + operationGroup.getId() + "\"]"));
+    }
+
+    public void addGroup() {
+//        click(By.xpath("//td[.=\"" + operationGroup.getId() + "\"]/..//input[@name='selected[]']"));
+//        click(By.name("add"));
+        click(By.xpath("//input[@name='add']"));
     }
 
     public void initDeletedContact() {

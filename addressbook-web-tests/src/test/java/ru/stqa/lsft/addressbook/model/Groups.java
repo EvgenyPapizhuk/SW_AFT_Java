@@ -2,10 +2,7 @@ package ru.stqa.lsft.addressbook.model;
 
 import com.google.common.collect.ForwardingSet;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Groups extends ForwardingSet<DateTestGroup> {
 
@@ -40,5 +37,18 @@ public class Groups extends ForwardingSet<DateTestGroup> {
         return groups;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Groups groups = (Groups) o;
+        return Objects.equals(delegate, groups.delegate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), delegate);
+    }
 }
 
