@@ -8,6 +8,8 @@ import ru.stqa.lsft.addressbook.model.DateTestGroup;
 import ru.stqa.lsft.addressbook.model.Groups;
 import ru.stqa.lsft.addressbook.tests.TestBase;
 
+import java.io.File;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -38,8 +40,9 @@ public class AddContactToGroupTest extends TestBase {
             }
         }
         if (needNewContact) {
+            File photo = new File("src/test/resources/shrimp.jpg");
             app.contact().createContact(new ContactDate()
-                    .withtFirstName("test1").withtMiddleName("test2").withttLastName("test1"), true);
+                    .withtFirstName("test1").withtMiddleName("test2").withttLastName("test1").withPhoto(photo), true);
             operationContact = app.db().contacts().iterator().next();
         }
     }
