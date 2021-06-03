@@ -61,7 +61,7 @@ public class DbHelper {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 //        List<Connects> result = session.createQuery( "from Connects" ).list().size();
-        List<Connects> result = session.createQuery( "from Connects" ).list();
+        List<Connects1> result = session.createQuery( "from Connects1" ).list();
         session.getTransaction().commit();
         session.close();
         return result.size();

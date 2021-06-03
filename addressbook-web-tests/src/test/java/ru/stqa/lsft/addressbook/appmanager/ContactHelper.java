@@ -58,10 +58,21 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("//select[@name=\"to_group\"]/option[@value=\"" + operationGroup.getId() + "\"]"));
     }
 
+    public void selectGroupFilter(DateTestGroup operationGroup) {
+//        click(By.xpath("//td[.=\"" + operationGroup.getId() + "\"]/..//input[@name='selected[]']"));
+        click(By.xpath("//select[@name=\"group\"]"));
+        click(By.xpath("//select[@name=\"group\"]/option[@value=\"" + operationGroup.getId() + "\"]"));
+    }
+
     public void addGroup() {
 //        click(By.xpath("//td[.=\"" + operationGroup.getId() + "\"]/..//input[@name='selected[]']"));
 //        click(By.name("add"));
         click(By.xpath("//input[@name='add']"));
+    }
+    public void removeFromGroup() {
+//        click(By.xpath("//td[.=\"" + operationGroup.getId() + "\"]/..//input[@name='selected[]']"));
+//        click(By.name("add"));
+        click(By.xpath("//input[@name='remove']"));
     }
 
     public void initDeletedContact() {

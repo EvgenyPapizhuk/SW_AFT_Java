@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "address_in_groups")
-public class Connects {
+public class Connects1 {
 
     @Id
     public int id;
@@ -18,7 +18,7 @@ public class Connects {
     @Type(type = "int")
     public int group_id;
 
-    public Connects() {
+    public Connects1() {
 
     }
 

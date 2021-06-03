@@ -24,6 +24,6 @@
     <!-- Names the annotated entity class -->
     <mapping class="ru.stqa.lsft.addressbook.model.DateTestGroup"/>
     <mapping class="ru.stqa.lsft.addressbook.model.ContactDate"/>
-    <mapping class="ru.stqa.lsft.addressbook.model.Connects"/>
+    <mapping class="ru.stqa.lsft.addressbook.model.Connects1"/>
     </session-factory>
 </hibernate-configuration>
