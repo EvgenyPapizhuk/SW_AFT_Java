@@ -45,12 +45,7 @@ public class DeletedContactFromGroupTest extends TestBase {
         }
 
         for (DateTestGroup group : localGroups) {
-//            Contacts oc = group.getContacts();
-//            int iii = oc.size();
-            int iii = group.contactsSize;
-            System.out.println("ij ,kkkkkkk");
-//            if (group.getContacts().size() > 0) {
-            if (iii > 0) {
+            if (group.getContacts().size() > 0) {
                 operationGroup = group;
                 break;
             }
@@ -61,8 +56,6 @@ public class DeletedContactFromGroupTest extends TestBase {
                     break;
                 }
             }
-
-
     }
 
     @Test
