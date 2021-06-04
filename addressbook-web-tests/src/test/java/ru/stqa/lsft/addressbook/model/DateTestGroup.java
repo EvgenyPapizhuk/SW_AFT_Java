@@ -31,8 +31,10 @@ public class DateTestGroup {
     @Type(type = "text")
     private String footer;
 
-    @ManyToMany(mappedBy = "groups")
+    @ManyToMany(mappedBy = "groups", fetch = FetchType.EAGER)
     private Set<ContactDate> contacts = new HashSet<ContactDate>();
+
+    public int contactsSize = contacts.size();
 
     public Contacts getContacts() {
         return new Contacts(contacts);

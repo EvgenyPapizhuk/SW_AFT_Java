@@ -42,21 +42,27 @@ public class DeletedContactFromGroupTest extends TestBase {
             app.contact().selectContact(operationContact);
             app.contact().selectGroup(operationGroup);
             app.contact().addGroup();
-        } else {
-            for (ContactDate contact : app.db().contacts()) {
+        }
+
+        for (DateTestGroup group : localGroups) {
+//            Contacts oc = group.getContacts();
+//            int iii = oc.size();
+            int iii = group.contactsSize;
+            System.out.println("ij ,kkkkkkk");
+//            if (group.getContacts().size() > 0) {
+            if (iii > 0) {
+                operationGroup = group;
+                break;
+            }
+        }
+        for (ContactDate contact : app.db().contacts()) {
                 if (contact.getGroups().size() > 0) {
                     operationContact = contact;
-                    return;
-                }
-            }
-            for (DateTestGroup group : localGroups) {
-                if (group.getContacts().size() > 0) {
-                    operationGroup = group;
-                    return;
+                    break;
                 }
             }
 
-        }
+
     }
 
     @Test
