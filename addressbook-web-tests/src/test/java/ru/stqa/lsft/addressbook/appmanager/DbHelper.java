@@ -33,6 +33,18 @@ public class DbHelper {
         return new Groups(result);
     }
 
+    public DateTestGroup group(int id) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        List<DateTestGroup> result = session.createQuery( "from DateTestGroup where id = \'" + id + "\'"  ).list();
+        for ( DateTestGroup group : result ) {
+            System.out.println(group);
+        }
+        session.getTransaction().commit();
+        session.close();
+        return result.iterator().next();
+    }
+
     public Contacts contacts() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();

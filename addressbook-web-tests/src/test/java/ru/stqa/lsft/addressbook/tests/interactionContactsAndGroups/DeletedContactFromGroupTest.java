@@ -19,7 +19,7 @@ public class DeletedContactFromGroupTest extends TestBase {
     DateTestGroup operationGroup;
 
     @BeforeMethod
-    public void ensurePreconditions(){
+    public void ensurePreconditions() {
         Groups localGroups = app.db().groups();
         Contacts localContacts = app.db().contacts();
         int quantityGroups = localGroups.size();
@@ -42,37 +42,41 @@ public class DeletedContactFromGroupTest extends TestBase {
             app.contact().selectContact(operationContact);
             app.contact().selectGroup(operationGroup);
             app.contact().addGroup();
-        }
-
-        for (DateTestGroup group : localGroups) {
-            if (group.getContacts().size() > 0) {
-                operationGroup = group;
-                break;
-            }
-        }
-        for (ContactDate contact : app.db().contacts()) {
-                if (contact.getGroups().size() > 0) {
-                    operationContact = contact;
+        } else {
+            for (DateTestGroup group : localGroups) {
+                if (group.getContacts().size() > 0) {
+                    operationGroup = group;
                     break;
                 }
             }
+            operationContact = operationGroup.getContacts().iterator().next();
+//            for (ContactDate contact : app.db().contacts()) {
+//                if (contact.getGroups().size() > 0) {
+//                    operationContact = contact;
+//                    break;
+//                }
+//            }
+        }
     }
 
     @Test
     public void testDeletedContactFromGroup() {
         app.goTo().goToHome();
         Groups before = operationContact.getGroups();
+//        Contacts before = operationGroup.getContacts();
 
 
         System.out.println(operationGroup);
         app.contact().selectGroupFilter(operationGroup);
         app.contact().selectContact(operationContact);
+//        app.contact().selectContact();
         app.contact().removeFromGroup();
 
 
         Groups after = app.db().contact(operationContact.getId()).getGroups();
-        System.out.println("before: "+ before.size());
-        System.out.println("after: "+ after.size());
+//        Contacts after = app.db().group(operationGroup.getId()).getContacts();
+        System.out.println("before: " + before.size());
+        System.out.println("after: " + after.size());
         assertThat(after, equalTo(before.withhout(operationGroup)));
     }
 }
