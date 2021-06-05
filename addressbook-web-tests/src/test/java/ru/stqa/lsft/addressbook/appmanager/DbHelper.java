@@ -48,7 +48,7 @@ public class DbHelper {
     public ContactDate contact(int id) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<ContactDate> result = session.createQuery( "from ContactDate where id = \"" + id + "\"" ).list();
+        List<ContactDate> result = session.createQuery( "from ContactDate where id = \'" + id + "\'" ).list();
         for ( ContactDate contact : result ) {
             System.out.println(contact);
         }
