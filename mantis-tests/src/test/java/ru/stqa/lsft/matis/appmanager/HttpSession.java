@@ -27,7 +27,7 @@ public class HttpSession {
     }
 
     public boolean login (String username, String password) throws IOException {
-        HttpPost post = new HttpPost(app.getProperty("web.BaseUrl") + "/login_page.php");
+        HttpPost post = new HttpPost(app.getProperty("web.BaseUrl") + "/login.php");
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("return", "index.php"));
         params.add(new BasicNameValuePair("username", username));
@@ -36,30 +36,8 @@ public class HttpSession {
         post.setEntity(new UrlEncodedFormEntity(params));
         CloseableHttpResponse response = httpClient.execute(post);
         String body = geTextFrom(response);
-        return body.contains(String.format("size=\"32\" maxlength=\"191\" value=\"%s\"", username));
+        return body.contains(String.format("<span class=\"user-info\">%s</span>", username));
     }
-
-//    public boolean login (String username, String password) throws IOException {
-//
-//        HttpPost post = new HttpPost(app.getProperty("web.BaseUrl") + "/login_page.php");
-//        List<NameValuePair> params = new ArrayList<NameValuePair>();
-//        params.add(new BasicNameValuePair("username", username));
-//        params.add(new BasicNameValuePair("return", "index.php"));
-//        post.setEntity(new UrlEncodedFormEntity(params));
-//        CloseableHttpResponse response = httpClient.execute(post);
-//
-//        post = new HttpPost(app.getProperty("web.BaseUrl") + "/login_password_page.php");
-//        params = new ArrayList<NameValuePair>();
-//        params.add(new BasicNameValuePair("password", password));
-//        params.add(new BasicNameValuePair("return", "index.php"));
-//        post.setEntity(new UrlEncodedFormEntity(params));
-//        response = httpClient.execute(post);
-//
-//
-//        String body = geTextFrom(response);
-//        return body.contains(String.format("size=\"32\" maxlength=\"191\" value=\"%s\"", username));
-//    }
-
 
     private String geTextFrom(CloseableHttpResponse response) throws IOException {
         try {
@@ -70,10 +48,10 @@ public class HttpSession {
     }
 
     public boolean isLoggedInAs(String username) throws IOException {
-        HttpGet get = new HttpGet(app.getProperty("web.BaseUrl") + "/my_view_page.php");
+        HttpGet get = new HttpGet(app.getProperty("web.BaseUrl") + "/account_page.php");
         CloseableHttpResponse response = httpClient.execute(get);
         String body = geTextFrom(response);
-        return body.contains(String.format("size=\"32\" maxlength=\"191\" value=\"%s\"", username));
+        return body.contains(String.format("<span class=\"user-info\">%s</span>", username));
     }
 
 }
