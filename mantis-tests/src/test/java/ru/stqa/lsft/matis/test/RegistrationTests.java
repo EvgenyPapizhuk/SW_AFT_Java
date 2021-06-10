@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
 import ru.stqa.lsft.matis.model.MailMessage;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.List;
 
@@ -19,13 +20,15 @@ public class RegistrationTests extends TestBase{
     }
 
     @Test
-    public void testRegistration() throws IOException {
+    public void testRegistration() throws IOException, MessagingException {
         long now = System.currentTimeMillis();
         String user = "username1" + now;
-        String email = String.format("user1%s@lmail.ld", now);
         String password1 = "password1";
+        String email = String.format("user1%s@lmail.ld", now);
+//        app.james().createUser(user, password1);
         app.registration().start(user, email);
         List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
+//        List<MailMessage> mailMessages = app.james().waitForMail(user, password1, 60000);
         String confirmationLink = findConfirmationLink(mailMessages, email);
         app.registration().finish(confirmationLink, password1);
         assertTrue(app.newSession().login(user, password1));
