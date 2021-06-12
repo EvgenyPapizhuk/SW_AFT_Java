@@ -10,6 +10,7 @@ import org.apache.http.impl.client.LaxRedirectStrategy;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.openqa.selenium.By;
+import ru.stqa.lsft.matis.model.UserMantisModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -59,4 +60,16 @@ public class ResetPasswordHelper extends HelperBase{
             response.close();
         }
     }
+
+    public void selectNotAdmin() {
+        List<UserMantisModel> result = app.db().users();
+        for (UserMantisModel user : result) {
+            if (90 != user.getAccessLevel()) {
+                click(By.linkText(user.getUsername()));
+                break;
+            }
+        }
+    }
+
+
 }

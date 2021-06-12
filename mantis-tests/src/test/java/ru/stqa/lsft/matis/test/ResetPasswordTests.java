@@ -26,7 +26,7 @@ public class ResetPasswordTests extends TestBase {
         String newPassword = "password1" + now;
         String email = String.format("user1%s@lmail.ld", now);
         app.reset().start(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"));
-
+        app.reset().selectNotAdmin();
 
 
 
