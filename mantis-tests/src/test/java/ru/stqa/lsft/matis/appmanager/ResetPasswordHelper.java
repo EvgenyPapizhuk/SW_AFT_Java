@@ -61,14 +61,16 @@ public class ResetPasswordHelper extends HelperBase{
         }
     }
 
-    public void selectNotAdmin() {
+    public UserMantisModel resetPasswordNotAdmin() {
         List<UserMantisModel> result = app.db().users();
         for (UserMantisModel user : result) {
             if (90 != user.getAccessLevel()) {
                 click(By.linkText(user.getUsername()));
-                break;
+                click(By.xpath("//input[@value=\"Сбросить пароль\"]"));
+                return user;
             }
         }
+        return null;
     }
 
 

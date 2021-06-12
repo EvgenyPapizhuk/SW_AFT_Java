@@ -5,6 +5,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
 import ru.stqa.lsft.matis.model.MailMessage;
+import ru.stqa.lsft.matis.model.UserMantisModel;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
@@ -22,15 +23,14 @@ public class ResetPasswordTests extends TestBase {
     @Test
     public void testRegistration() throws IOException, MessagingException {
         long now = System.currentTimeMillis();
-        String user = "username1" + now;
         String newPassword = "password1" + now;
-        String email = String.format("user1%s@lmail.ld", now);
+//        String email = String.format("user1%s@lmail.ld", now);
+
         app.reset().start(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword"));
-        app.reset().selectNotAdmin();
-
-
-
-        List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
+        UserMantisModel operationUser = app.reset().resetPasswordNotAdmin();
+        String email = operationUser.getEmail();
+        String user = operationUser.getUsername();
+        List<MailMessage> mailMessages = app.mail().waitForMail(1, 20000);
         String confirmationLink = findConfirmationLink(mailMessages, email);
         app.reset().finish(confirmationLink, newPassword);
         assertTrue(app.newSession().login(user, newPassword));
