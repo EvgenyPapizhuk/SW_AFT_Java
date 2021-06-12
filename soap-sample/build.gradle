@@ -21,10 +21,11 @@ buildscript{
 apply plugin: 'no.nils.wsdl2java'
 
 wsdl2java {
-    wsdlDir = file("src/main/resources") // define to support incremental build
+//    wsdlDir = file("src/main/resources") // define to support incremental build
+    wsdlDir = file("C:/SWprojects/SW_AFT_Java/soap-sample/src/main/java") // define to support incremental build
 
     wsdlsToGenerate = [   //  2d-array of wsdls and cxf-parameters
-//                          ["src/main/resources/wsgeoip.lavasoft.wsdl"],
-                          ["C:/SWprojects/SW_AFT_Java/soap-sample/src/main/resources/wsgeoip1.wsdl"]
+//                          ["src/main/resources/wsgeoip1.wsdl"],
+                          ["C:/SWprojects/SW_AFT_Java/soap-sample/src/main/resources/ipservice2.wsdl"]
     ]
 }
