@@ -7,6 +7,7 @@ import ru.lanwen.verbalregex.VerbalExpression;
 import ru.stqa.lsft.matis.model.MailMessage;
 
 import javax.mail.MessagingException;
+import javax.xml.rpc.ServiceException;
 import java.io.IOException;
 import java.util.List;
 
@@ -20,7 +21,8 @@ public class RegistrationTests extends TestBase{
     }
 
     @Test
-    public void testRegistration() throws IOException, MessagingException {
+    public void testRegistration() throws IOException, MessagingException, ServiceException {
+        skipIfNotFixed(1);
         long now = System.currentTimeMillis();
         String user = "username1" + now;
         String password1 = "password1";
