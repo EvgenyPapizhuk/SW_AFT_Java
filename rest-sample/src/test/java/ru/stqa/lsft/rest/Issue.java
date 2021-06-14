@@ -7,6 +7,26 @@ public class Issue {
     private int id;
     private String subject;
     private String description;
+    private int state;
+    private String state_name;
+
+    public String getState_name() {
+        return state_name;
+    }
+
+    public Issue withState_name(String state_name) {
+        this.state_name = state_name;
+        return this;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public Issue withState(int state) {
+        this.state = state;
+        return this;
+    }
 
     public int getId() {
         return id;
@@ -52,8 +72,10 @@ public class Issue {
     public String toString() {
         return "Issue{" +
                 "id=" + id +
-                ", sabject='" + subject + '\'' +
+                ", subject='" + subject + '\'' +
                 ", description='" + description + '\'' +
+                ", state=" + state +
+                ", state_name='" + state_name + '\'' +
                 '}';
     }
 }
