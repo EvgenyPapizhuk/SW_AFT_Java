@@ -14,20 +14,36 @@ import java.util.Set;
 public class TestBase {
 
 
+//    boolean isIssueOpen(int issueId) throws IOException {
+//        String json = getExecutor().execute(Request
+//                .Get("https://bugify.stqa.ru/api/issues.json")).returnContent().asString();
+//        JsonElement parsed = new JsonParser().parse(json);
+//        JsonElement issues = parsed.getAsJsonObject().get("issues");
+//
+//        Set<Issue> newIssues = new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {}.getType());
+//        for (Issue operationIssue : newIssues) {
+//            if (operationIssue.getId() == issueId) {
+//                if (operationIssue.getState() == 4) {
+//                    return false;
+//                }
+//                return true;
+//            }
+//        }
+//        return true;
+//    }
+
     boolean isIssueOpen(int issueId) throws IOException {
         String json = getExecutor().execute(Request
-                .Get("https://bugify.stqa.ru/api/issues.json")).returnContent().asString();
+                .Get(String.format("https://bugify.stqa.ru/api/issues/%s.json", issueId))).returnContent().asString();
         JsonElement parsed = new JsonParser().parse(json);
         JsonElement issues = parsed.getAsJsonObject().get("issues");
 
         Set<Issue> newIssues = new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {}.getType());
-        for (Issue operationIssue : newIssues) {
-            if (operationIssue.getId() == issueId) {
-                if (operationIssue.getState() == 4) {
-                    return false;
-                }
-                return true;
-            }
+//        for (Issue operIssue : newIssues) {
+//            System.out.println(operIssue);
+//        }
+        if (newIssues.iterator().next().getState() == 4) {
+            return false;
         }
         return true;
     }
