@@ -20,6 +20,5 @@ public class EqationTests {
         Equation eq = new Equation(1, 4, 2);
         Assert.assertEquals(eq.getN(), 2);
     }
-
-
+    
 }
