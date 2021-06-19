@@ -8,14 +8,16 @@ public class PointTest {
     @Test
     public void test (){
         Point t = new Point(3,4);
-        assert t.x == 2;
+//        assert t.x == 2;
+        assert t.x == 3;
         System.out.println("Тест № 1 пройден");
     }
 
     @Test
     public void test2 (){
         Point t = new Point(3,4);
-        Assert.assertEquals( t.distance(new Point(3,4)) , 2);
+//        Assert.assertEquals( t.distance(new Point(3,4)) , 2);
+        Assert.assertEquals( t.distance(new Point(3,4)) , 0);
         System.out.println("Тест № 2 пройден");
     }
 
