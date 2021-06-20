@@ -36,12 +36,14 @@ public class ApplicationManager {
     }
 
     public void init() throws IOException {
-        String target = System.getProperty("target", "local");
-        properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+//        String target = System.getProperty("target", "local");
+//        properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+        
+        properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", "remote"))));
 
         dbHelper = new DbHelper();
 
-        if (!"".equals(properties.getProperty("selenium.server"))) {
+        if ("".equals(properties.getProperty("selenium.server"))) {
             System.out.println("выполнился вариант 1");
             if (browser.equals(BrowserType.FIREFOX)) {
                 wd = new FirefoxDriver();
