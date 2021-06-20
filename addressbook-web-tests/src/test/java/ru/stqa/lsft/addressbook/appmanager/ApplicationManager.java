@@ -41,7 +41,7 @@ public class ApplicationManager {
 
         dbHelper = new DbHelper();
 
-        if ("".equals(properties.getProperty("selenium.server"))) {
+        if (!"".equals(properties.getProperty("selenium.server"))) {
             System.out.println("выполнился вариант 1");
             if (browser.equals(BrowserType.FIREFOX)) {
                 wd = new FirefoxDriver();
